@@ -1,3 +1,4 @@
 AUDIO_ENABLE = no
 COMMAND_ENABLE = no
 CAPS_WORD_ENABLE = yes
+SRC = matrix.c
