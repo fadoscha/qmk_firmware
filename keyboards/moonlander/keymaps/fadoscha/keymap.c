@@ -2,9 +2,9 @@
 #include "version.h"
 
 enum layers {
-    BASE,       // default layer
-    NEO,       // symbols
-    TRIPPLE,    // cmd + ctrl + alt
+    BASE,           // Default Layer
+    NEO,            // Symbols
+    NAV             // Navigation
 };
 
 enum custom_keycodes {
@@ -13,11 +13,11 @@ enum custom_keycodes {
 };
 
 // MARK: - Combos
-const uint16_t PROGMEM test_combo1[] = {KC_A, KC_B, COMBO_END};
-const uint16_t PROGMEM test_combo2[] = {LCAG_T(KC_SPC), LCAG_T(KC_ENT), COMBO_END};
+const uint16_t PROGMEM combo_one[] = {LCAG_T(KC_SPC), LCAG_T(KC_ENT), COMBO_END};
+const uint16_t PROGMEM combo_two[] = {KC_A, KC_B, COMBO_END};
 combo_t key_combos[COMBO_COUNT] = {
-    COMBO(test_combo1, KC_ESC),
-    COMBO(test_combo2, KC_ESC), // keycodes with modifiers are possible too!
+    COMBO(combo_one, MO(NAV)),
+    COMBO(combo_two, KC_ESC), // keycodes with modifiers are possible too!
 };
 
 #define FA_BSPC LCTL_T(KC_BSPC)
@@ -65,10 +65,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                             _______, _______, _______,           _______,_______, _______
     ),
 
-    [TRIPPLE] = LAYOUT_moonlander(
+    [NAV] = LAYOUT_moonlander(
         _______, _______, _______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, _______, _______,
         _______, _______, _______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, _______, _______,
-        _______, _______, _______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______, _______, _______,           _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
         _______, _______, _______, _______, _______, _______,                             _______, _______, _______, _______, _______, _______,
         _______, _______, _______, _______, _______,          _______,           _______,          _______, _______, _______, _______, _______,
                                             _______, _______, _______,            _______, _______, _______
