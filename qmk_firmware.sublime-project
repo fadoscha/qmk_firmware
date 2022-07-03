@@ -1,0 +1,22 @@
+{
+	"folders":
+	[
+		{
+			"path": "."
+		}
+	],
+
+	"build_systems":
+	[
+		{
+			"name": "qmk compile",
+			"working_dir": "${project_path:${folder}}",
+			"shell_cmd": "qmk compile"
+		},
+		{
+			"name": "qmk flash",
+			"working_dir": "${project_path:${folder}}",
+			"shell_cmd": "qmk flash"
+		}
+	]
+}
