@@ -9,14 +9,17 @@
 	"build_systems":
 	[
 		{
-			"name": "qmk compile",
+			"name": "qmk",
 			"working_dir": "${project_path:${folder}}",
-			"shell_cmd": "qmk compile"
-		},
-		{
-			"name": "qmk flash",
-			"working_dir": "${project_path:${folder}}",
-			"shell_cmd": "qmk flash"
+			"shell_cmd": "qmk compile",
+
+			"variants":
+			[
+				{
+					"name": "qmk flash",
+					"shell_cmd": "qmk flash"
+				},
+			]
 		}
 	]
 }
