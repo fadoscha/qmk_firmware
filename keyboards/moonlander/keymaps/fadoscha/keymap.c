@@ -12,11 +12,7 @@ enum custom_keycodes {
     MA_1
 };
 
-#define FA_SPC LCAG_T(KC_SPC)
 #define FA_BSPC LCTL_T(KC_BSPC)
-#define FA_ENT HYPR_T(KC_ENT)
-#define FA_ESC RCMD_T(KC_ESC)
-#define FA_TAB LCMD_T(KC_TAB)
 
 #define FA_Z LSFT_T(KC_Z)
 #define FA_X LT(NEO, KC_X)
@@ -30,7 +26,16 @@ enum custom_keycodes {
 #define FA_NOM HYPR(KC_F3)
 #define FA_MAG HYPR(KC_F4)
 
-#define FA_OSM OSM(MOD_LGUI | MOD_LSFT)
+// Thumb Cluster Left
+#define FA_TAB LCMD_T(KC_TAB)               // Tab              |        Cmd
+#define FA_SPC LCAG_T(KC_SPC)               // Space            |        TRIPPLE
+#define FA_QOP LSG_T(KC_F20)                // Open Quickly     |        Cmd + Shift
+
+// Thumb Cluster Right
+#define FA_PLT ALL_T(KC_F19)                // Command Palette  |        HYPER
+#define FA_ENT LCAG_T(KC_ENT)               // Enter            |        TRIPPLE
+#define FA_ESC RCMD_T(KC_ESC)               // ESC              |        Cmd   
+
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -40,7 +45,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         FA_BSPC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    MA_0,              MA_1,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
         KC_LOPT, FA_Z,    FA_X,    KC_C,    KC_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, FA_DOT,  FA_SLSH, KC_ROPT,
         KC_GRV,  QK_BOOT, KC_LCTL, KC_LOPT, KC_LCMD,          KC_ESC,            QK_BOOT,          KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______,
-                                            FA_TAB,  FA_SPC,  FA_OSM,            FA_OSM,  FA_ENT,  FA_ESC
+                                            FA_TAB,  FA_SPC,  FA_QOP,            FA_PLT,  FA_ENT,  FA_ESC
     ),
 
     [NEO] = LAYOUT_moonlander(
