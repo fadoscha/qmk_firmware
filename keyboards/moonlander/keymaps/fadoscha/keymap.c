@@ -14,10 +14,10 @@ enum custom_keycodes {
 
 // MARK: - Combos
 const uint16_t PROGMEM combo_one[] = {LCAG_T(KC_SPC), LCAG_T(KC_ENT), COMBO_END};
-const uint16_t PROGMEM combo_two[] = {KC_A, KC_B, COMBO_END};
+const uint16_t PROGMEM combo_two[] = {LCAG_T(KC_SPC), RCMD_T(KC_ESC), COMBO_END};
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo_one, MO(NAV)),
-    COMBO(combo_two, KC_ESC), // keycodes with modifiers are possible too!
+    COMBO(combo_two, LGUI(KC_LCTL))
 };
 
 #define FA_BSPC LCTL_T(KC_BSPC)
