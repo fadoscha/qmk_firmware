@@ -13,13 +13,17 @@ enum custom_keycodes {
 };
 
 // MARK: - Combos
-const uint16_t PROGMEM combo_one[] = {LCAG_T(KC_SPC), LCAG_T(KC_ENT), COMBO_END};
-const uint16_t PROGMEM combo_two[] = {LCAG_T(KC_SPC), RCMD_T(KC_ESC), COMBO_END};
+const uint16_t PROGMEM combo_upper_piano_keys[] = {LCMD_T(KC_TAB), RCMD_T(KC_ESC), COMBO_END};
+const uint16_t PROGMEM combo_middle_piano_keys[] = {LCAG_T(KC_SPC), LCAG_T(KC_ENT), COMBO_END};
+const uint16_t PROGMEM combo_lower_piano_keys[] = {LSG_T(KC_F20), LAG_T(KC_F19), COMBO_END};
+
 combo_t key_combos[COMBO_COUNT] = {
-    COMBO(combo_one, MO(NAV)),
-    COMBO(combo_two, LGUI(KC_LCTL))
+    COMBO(combo_upper_piano_keys, KC_HYPR),
+    COMBO(combo_middle_piano_keys, LGUI(KC_LCTL)),
+    COMBO(combo_lower_piano_keys, KC_HYPR)
 };
 
+// MARK: - Custom Modifier Keys
 #define FA_BSPC LCTL_T(KC_BSPC)
 
 #define FA_Z LSFT_T(KC_Z)
@@ -40,9 +44,9 @@ combo_t key_combos[COMBO_COUNT] = {
 #define FA_QOP LSG_T(KC_F20)                // Open Quickly     |        Cmd + Shift
 
 // Thumb Cluster Right
-#define FA_PLT ALL_T(KC_F19)                // Command Palette  |        HYPER
-#define FA_ENT LCAG_T(KC_ENT)               // Enter            |        TRIPPLE
 #define FA_ESC RCMD_T(KC_ESC)               // ESC              |        Cmd   
+#define FA_ENT LCAG_T(KC_ENT)               // Enter            |        TRIPPLE
+#define FA_PLT LAG_T(KC_F19)                // Command Palette  |        Cmd + Alt
 
 
 // clang-format off
@@ -59,7 +63,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [NEO] = LAYOUT_moonlander(
         _______, _______, _______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, _______, _______,
         _______, KC_EXLM, KC_AT,   KC_ASTR, KC_AMPR, KC_TILD, _______,           _______, _______, _______, KC_LPRN, KC_RPRN, KC_PLUS, _______,
-        _______, KC_CIRC, KC_TILD, KC_HASH, KC_DLR,  KC_PERC, _______,           _______, KC_MINS, KC_RCBR, KC_LCBR, KC_RCBR, KC_UNDS, KC_EQL,
+        _______, KC_CIRC, KC_TILD, KC_HASH, KC_DLR,  KC_PERC, _______,           _______, KC_UNDS, KC_RCBR, KC_LCBR, KC_RCBR, KC_MINS, KC_EQL,
         _______, KC_GRV,  KC_BSLS, KC_SLSH, KC_PIPE, _______,                             _______, KC_ASTR, KC_LBRC, KC_RBRC, _______, _______,
         _______, _______, _______, _______, _______,          _______,           _______,          _______, _______, _______, _______, _______,
                                             _______, _______, _______,           _______,_______, _______
