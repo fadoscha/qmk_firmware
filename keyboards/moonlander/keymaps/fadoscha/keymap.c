@@ -1,36 +1,18 @@
 #include QMK_KEYBOARD_H
 #include "version.h"
 
-enum layers {
-    BASE,           // Default Layer
-    NEO,            // Symbols
-    NAV             // Navigation
-};
-
-enum custom_keycodes {
-    MA_0 = ML_SAFE_RANGE,
-    MA_1
-};
-
-// MARK: - Combos
-const uint16_t PROGMEM combo_upper_piano_keys[] = {LCMD_T(KC_TAB), RCMD_T(KC_ESC), COMBO_END};
-const uint16_t PROGMEM combo_middle_piano_keys[] = {LCAG_T(KC_SPC), LCAG_T(KC_ENT), COMBO_END};
-const uint16_t PROGMEM combo_lower_piano_keys[] = {LSG_T(KC_F20), LAG_T(KC_F19), COMBO_END};
-
-combo_t key_combos[COMBO_COUNT] = {
-    COMBO(combo_upper_piano_keys, KC_HYPR),
-    COMBO(combo_middle_piano_keys, LGUI(KC_LCTL)),
-    COMBO(combo_lower_piano_keys, KC_HYPR)
-};
-
 // MARK: - Custom Modifier Keys
-#define FA_BSPC LCTL_T(KC_BSPC)
+#define FA_BSPC LSFT_T(KC_BSPC)
+#define FA_QUOT RSFT_T(KC_QUOT)
 
-#define FA_Z LSFT_T(KC_Z)
-#define FA_X LT(NEO, KC_X)
+#define FA_Z LT(NEO, KC_X)
+#define FA_X LCTL_T(KC_X)
 
-#define FA_DOT LT(NEO, KC_DOT)
-#define FA_SLSH RSFT_T(KC_SLSH)
+#define FA_DOT RCTL_T(KC_DOT)
+#define FA_SLSH LT(NEO, KC_SLSH)
+
+#define FA_LBRC LOPT_T(KC_LBRC)
+#define FA_RBRC ROPT_T(KC_RBRC)
 
 #define FA_DEC LGUI(KC_MINUS)
 #define FA_INC LGUI(KC_EQUAL)
@@ -48,14 +30,39 @@ combo_t key_combos[COMBO_COUNT] = {
 #define FA_ENT LCAG_T(KC_ENT)               // Enter            |        TRIPPLE
 #define FA_PLT LAG_T(KC_F19)                // Command Palette  |        Cmd + Alt
 
+enum layers {
+    BASE,           // Default Layer
+    NEO,            // Symbols
+    NAV,            // Navigation
+    NUM             // Numbers
+};
+
+enum custom_keycodes {
+    MA_0 = ML_SAFE_RANGE,
+    MA_1
+};
+
+// MARK: - Combos
+const uint16_t PROGMEM combo_upper_piano_keys[] = {LCMD_T(KC_TAB), RCMD_T(KC_ESC), COMBO_END};
+const uint16_t PROGMEM combo_middle_piano_keys[] = {LCAG_T(KC_SPC), LCAG_T(KC_ENT), COMBO_END};
+const uint16_t PROGMEM combo_lower_piano_keys[] = {LSG_T(KC_F20), LAG_T(KC_F19), COMBO_END};
+
+const uint16_t PROGMEM combo_a_scln_[] = {KC_A, KC_SCLN, COMBO_END};
+
+combo_t key_combos[COMBO_COUNT] = {
+    COMBO(combo_upper_piano_keys, KC_HYPR),
+    COMBO(combo_middle_piano_keys, LGUI(KC_LCTL)),
+    COMBO(combo_lower_piano_keys, KC_HYPR),
+    COMBO(combo_a_scln_, TG(NUM))
+};
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_moonlander(
         KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    FA_NOM,            FA_MAG,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,
         KC_DEL,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    FA_DEC,            FA_INC,  KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
-        FA_BSPC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    MA_0,              MA_1,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
-        KC_LOPT, FA_Z,    FA_X,    KC_C,    KC_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, FA_DOT,  FA_SLSH, KC_ROPT,
+        FA_BSPC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    MA_0,              MA_1,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, FA_QUOT,
+        FA_LBRC, FA_Z,    FA_X,    KC_C,    KC_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, FA_DOT,  FA_SLSH, KC_RBRC,
         KC_GRV,  QK_BOOT, KC_LCTL, KC_LOPT, KC_LCMD,          KC_ESC,            QK_BOOT,          KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______,
                                             FA_TAB,  FA_SPC,  FA_QOP,            FA_PLT,  FA_ENT,  FA_ESC
     ),
@@ -75,7 +82,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, KC_F10,  KC_F11,  KC_F12,  KC_F13,  KC_F15,  _______,           _______, KC_F16,  KC_F17,  KC_F18,  KC_F19,  KC_F20,  _______,
         _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                               KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,   _______,
         _______, _______, _______, _______, _______,          _______,           _______,          _______, _______, _______, _______, _______,
-                                            _______, _______, _______,            _______, _______, _______
+                                            _______, _______, _______,           _______, _______, _______
+    ),
+
+    [NUM] = LAYOUT_moonlander(
+        _______, _______, _______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, _______, _______,
+        _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    _______,           _______,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, _______,
+        _______, _______, _______, _______, _______, _______,                             _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______,          _______,           _______,          _______, _______, _______, _______, _______,
+                                            _______, _______, _______,           _______, _______, TG(NUM)
     ),
 };
 
