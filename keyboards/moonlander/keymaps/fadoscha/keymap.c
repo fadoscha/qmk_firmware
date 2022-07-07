@@ -20,6 +20,12 @@
 #define FA_NOM HYPR(KC_F3)
 #define FA_MAG HYPR(KC_F4)
 
+// Umlaute
+#define FA_UE LOPT(KC_F4)
+#define FA_AE LOPT(KC_F4)
+#define FA_OE LOPT(KC_F4)
+#define FA_SZ LOPT(KC_F4)
+
 // Thumb Cluster Left
 #define FA_TAB LCMD_T(KC_TAB)               // Tab              |        Cmd
 #define FA_SPC LCAG_T(KC_SPC)               // Space            |        TRIPPLE
@@ -40,8 +46,10 @@ enum layers {
 enum custom_keycodes {
     MA_0 = ML_SAFE_RANGE,
     MA_1,
-    MA_2,
-    MA_3
+    MA_AE,
+    MA_UE,
+    MA_OE,
+    MA_SZ
 };
 
 // MARK: - Combos
@@ -89,11 +97,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [NUM] = LAYOUT_moonlander(
         _______, _______, _______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, _______, _______,
-        _______, _______, _______, _______, _______, _______, _______,           _______, _______,    MA_2, _______, _______, _______, _______,
-        _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    _______,           _______,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, _______,
-        _______, MA_3,    _______, _______, _______, _______,                             _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______, _______, _______,           _______, _______,    KC_7,    KC_8,    KC_9, MA_SZ,   MA_UE,
+        _______, _______, _______, _______, _______, _______, _______,           _______, _______,    KC_4,    KC_5,    KC_6, MA_OE,   MA_AE,
+        _______, _______, _______, _______, _______, _______,                             _______,    KC_1,    KC_2,    KC_3, _______, _______,
         _______, _______, _______, _______, _______,          _______,           _______,          _______, _______, _______, _______, _______,
-                                            _______, _______, _______,           _______, _______, TG(NUM)
+                                            _______, _______, _______,           _______, KC_0,    TG(NUM)
     ),
 };
 
@@ -194,10 +202,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case MA_1:
             SEND_STRING("^lrx" SS_DELAY(100) SS_TAP(X_ESCAPE));
             break;
-        case MA_2:
-            SEND_STRING(SS_LALT("u"));
+        case MA_AE:
+            SEND_STRING(SS_LALT("u") SS_DELAY(100) "a");
             break;
-        case MA_3:
+        case MA_OE:
+            SEND_STRING(SS_LALT("u") SS_DELAY(100) "o");
+            break;
+        case MA_UE:
+            SEND_STRING(SS_LALT("u") SS_DELAY(100) "u");
+            break;
+        case MA_SZ:
             SEND_STRING(SS_LALT("s"));
             break;
         }
