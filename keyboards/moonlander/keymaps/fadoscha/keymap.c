@@ -5,13 +5,13 @@
 #define FA_BSPC LSFT_T(KC_BSPC)
 #define FA_QUOT RSFT_T(KC_QUOT)
 
-#define FA_Z LT(NEO, KC_X)
-#define FA_X LCTL_T(KC_X)
+#define FA_Z LT(NEO, KC_Z)
+#define FA_X LT(NUM, KC_X)
 
-#define FA_DOT RCTL_T(KC_DOT)
+#define FA_DOT LT(NUM, KC_DOT)
 #define FA_SLSH LT(NEO, KC_SLSH)
 
-#define FA_LBRC LOPT_T(KC_LBRC)
+#define FA_LBRC LCTL_T(KC_LBRC)
 #define FA_RBRC LT(NUM, KC_RBRC)
 
 #define FA_DEC LGUI(KC_MINUS)
@@ -39,7 +39,9 @@ enum layers {
 
 enum custom_keycodes {
     MA_0 = ML_SAFE_RANGE,
-    MA_1
+    MA_1,
+    MA_2,
+    MA_3
 };
 
 // MARK: - Combos
@@ -87,9 +89,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [NUM] = LAYOUT_moonlander(
         _______, _______, _______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, _______, _______,
-        _______, KC_0,    KC_9,    KC_8,    KC_7,    KC_6,    _______,           _______,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, _______,
+        _______, _______, _______, _______, _______, _______, _______,           _______, _______,    MA_2, _______, _______, _______, _______,
         _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    _______,           _______,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, _______,
-        _______, _______, _______, _______, _______, _______,                             _______, _______, _______, _______, _______, _______,
+        _______, MA_3,    _______, _______, _______, _______,                             _______, _______, _______, _______, _______, _______,
         _______, _______, _______, _______, _______,          _______,           _______,          _______, _______, _______, _______, _______,
                                             _______, _______, _______,           _______, _______, TG(NUM)
     ),
@@ -191,6 +193,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
         case MA_1:
             SEND_STRING("^lrx" SS_DELAY(100) SS_TAP(X_ESCAPE));
+            break;
+        case MA_2:
+            SEND_STRING(SS_LALT("u"));
+            break;
+        case MA_3:
+            SEND_STRING(SS_LALT("s"));
             break;
         }
     }
