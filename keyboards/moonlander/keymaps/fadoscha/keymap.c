@@ -5,19 +5,23 @@
 #define FA_BSPC LSFT_T(KC_BSPC)
 #define FA_QUOT RSFT_T(KC_QUOT)
 
-#define FA_Z LT(NEO, KC_Z)
-#define FA_X LT(NUM, KC_X)
-
-#define FA_DOT LT(NUM, KC_DOT)
-#define FA_SLSH LT(NEO, KC_SLSH)
-
-#define FA_LBRC LCTL_T(KC_LBRC)
-#define FA_RBRC LT(NUM, KC_RBRC)
+// Left Half
+#define FA_Z LOPT_T(KC_Z)
+#define FA_X LT(NEO, KC_X)
+#define FA_D LT(NAV, KC_D)
 
 #define FA_DEC LGUI(KC_MINUS)
-#define FA_INC LGUI(KC_EQUAL)
-
 #define FA_NOM HYPR(KC_F3)
+
+#define FA_LBRC LCTL_T(KC_LBRC)
+
+// Right Half
+#define FA_DOT LT(NEO, KC_DOT)
+#define FA_SLSH LOPT_T(KC_SLSH)
+#define FA_K LT(NUM, KC_D)
+
+#define FA_RBRC LT(NUM, KC_RBRC)
+#define FA_INC LGUI(KC_EQUAL)
 #define FA_MAG HYPR(KC_F4)
 
 // Umlaute
@@ -40,7 +44,9 @@ enum layers {
     BASE,           // Default Layer
     NEO,            // Symbols
     NAV,            // Navigation
-    NUM             // Numbers
+    NUM,            // Numbers
+    FUN,            // Function Keys
+    CLR             // Clear Layer
 };
 
 enum custom_keycodes {
@@ -57,13 +63,13 @@ const uint16_t PROGMEM combo_upper_piano_keys[] = {LCMD_T(KC_TAB), RCMD_T(KC_ESC
 const uint16_t PROGMEM combo_middle_piano_keys[] = {LCAG_T(KC_SPC), LCAG_T(KC_ENT), COMBO_END};
 const uint16_t PROGMEM combo_lower_piano_keys[] = {LSG_T(KC_F20), LAG_T(KC_F19), COMBO_END};
 
-const uint16_t PROGMEM combo_a_scln_[] = {KC_A, KC_SCLN, COMBO_END};
+const uint16_t PROGMEM combo_a_scln[] = {KC_A, KC_SCLN, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo_upper_piano_keys, KC_HYPR),
     COMBO(combo_middle_piano_keys, LGUI(KC_LCTL)),
-    COMBO(combo_lower_piano_keys, KC_HYPR),
-    COMBO(combo_a_scln_, TG(NUM))
+    COMBO(combo_lower_piano_keys, LCA(KC_LGUI)),
+    COMBO(combo_a_scln, TG(NUM))
 };
 
 // clang-format off
@@ -71,9 +77,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_moonlander(
         KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    FA_NOM,            FA_MAG,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,
         KC_DEL,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    FA_DEC,            FA_INC,  KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
-        FA_BSPC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    MA_0,              MA_1,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, FA_QUOT,
+        FA_BSPC, KC_A,    KC_S,    FA_D,    KC_F,    KC_G,    MA_0,              MA_1,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, FA_QUOT,
         FA_LBRC, FA_Z,    FA_X,    KC_C,    KC_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, FA_DOT,  FA_SLSH, FA_RBRC,
-        KC_GRV,  QK_BOOT, KC_LCTL, KC_LOPT, KC_LCMD,          KC_ESC,            QK_BOOT,          KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______,
+        KC_GRV,  QK_BOOT, KC_LCTL, KC_LOPT, KC_LCMD,          KC_F18,            KC_ESC,           KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, QK_BOOT,
                                             FA_TAB,  FA_SPC,  FA_QOP,            FA_PLT,  FA_ENT,  FA_ESC
     ),
 
@@ -88,9 +94,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [NAV] = LAYOUT_moonlander(
         _______, _______, _______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, _______, _______,
-        _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   _______,           _______, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,
-        _______, KC_F10,  KC_F11,  KC_F12,  KC_F13,  KC_F15,  _______,           _______, KC_F16,  KC_F17,  KC_F18,  KC_F19,  KC_F20,  _______,
-        _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                               KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,   _______,
+        _______, _______, KC_UP,   _______, _______, _______, _______,           _______, _______, _______, _______, _______, _______, _______,
+        _______, KC_LEFT, KC_DOWN, KC_RGHT, _______, _______, _______,           _______, _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______, _______,                             _______, _______, _______, _______, _______, _______,
         _______, _______, _______, _______, _______,          _______,           _______,          _______, _______, _______, _______, _______,
                                             _______, _______, _______,           _______, _______, _______
     ),
@@ -102,6 +108,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______, _______, _______, _______, _______,                             _______,    KC_1,    KC_2,    KC_3, _______, _______,
         _______, _______, _______, _______, _______,          _______,           _______,          _______, _______, _______, _______, _______,
                                             _______, _______, _______,           _______, KC_0,    TG(NUM)
+    ),
+
+    [FUN] = LAYOUT_moonlander(
+        _______, _______, _______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, _______, _______,
+        _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   _______,           _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   _______,
+        _______, KC_F10,  KC_F11,  KC_F12,  KC_F13,  KC_F15,  _______,           _______, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,
+        _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                               KC_F11,  KC_F12,  KC_F13,  KC_F14,  KC_F15,   _______,
+        _______, _______, _______, _______, _______,          _______,           _______,          _______, _______, _______, _______, _______,
+                                            _______, _______, _______,           _______, _______, _______
+    ),
+
+    [CLR] = LAYOUT_moonlander(
+        _______, _______, _______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______, _______,                             _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______,          _______,           _______,          _______, _______, _______, _______, _______,
+                                            _______, _______, _______,           _______, _______, _______
     ),
 };
 
