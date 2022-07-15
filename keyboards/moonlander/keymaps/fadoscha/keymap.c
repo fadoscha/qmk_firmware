@@ -76,11 +76,11 @@ combo_t key_combos[COMBO_COUNT] = {
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_moonlander(
-        KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    FA_NOM,            FA_MAG,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,
-        FA_RVL,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    FA_DEC,            FA_INC,  KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
-        FA_BSPC, KC_A,    KC_S,    FA_D,    FA_F,    KC_G,    MA_0,              MA_1,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, FA_QUOT,
-        FA_GRV,  FA_Z,    FA_X,    KC_C,    KC_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, FA_DOT,  FA_SLSH, FA_LCBR,
-        KC_GRV,  QK_BOOT, KC_LCTL, KC_LOPT, KC_LCMD,          KC_F18,            KC_ESC,           KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, QK_BOOT,
+        FA_DEC,  FA_RVL,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,              KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC,
+        MA_0,    FA_BSPC, KC_A,    KC_S,    FA_D,    FA_F,    KC_G,              KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, FA_QUOT, KC_BSLS,
+        _______, FA_GRV,  FA_Z,    FA_X,    KC_C,    KC_V,    KC_B,              KC_N,    KC_M,    KC_COMM, FA_DOT,  FA_SLSH, FA_LCBR, _______,
+        KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,
+        KC_GRV,  QK_BOOT, KC_LCTL, KC_LOPT, KC_LCMD,          FA_DEC,            FA_INC,           KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, QK_BOOT,
                                             FA_TAB,  FA_SPC,  FA_QOP,            FA_PLT,  FA_ENT,  FA_ESC
     ),
 
