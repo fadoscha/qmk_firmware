@@ -6,24 +6,22 @@
 #define FA_QUOT RSFT_T(KC_QUOT)
 
 // Left Half
-#define FA_Z LCTL_T(KC_Z)
-#define FA_X LT(NEO, KC_X)
+#define FA_Z LT(NEO, KC_Z)
+#define FA_X LOPT_T(KC_X)
 #define FA_D LT(NUM, KC_D)
 #define FA_F LT(NAV, KC_F)
-
-#define FA_DEC LGUI(KC_MINUS)
-#define FA_NOM HYPR(KC_F3)
-
-#define FA_GRV LOPT_T(KC_GRV)
+#define FA_GRV LCTL_T(KC_GRV)
 #define FA_RVL LGUI(LSFT(KC_J))
 
 // Right Half
-#define FA_DOT LT(NEO, KC_DOT)
-#define FA_SLSH LOPT_T(KC_SLSH)
+#define FA_DOT LOPT_T(KC_DOT)
+#define FA_SLSH LT(NEO, KC_SLSH)
 #define FA_LCBR ROPT_T(KC_LCBR)
+#define FA_FCS LCTL(LOPT(LCMD(KC_SCLN)))    // Change focus of editos
 
+// Inrease Decrease
+#define FA_DEC LGUI(KC_MINUS)
 #define FA_INC LGUI(KC_EQUAL)
-#define FA_MAG HYPR(KC_F4)
 
 // Umlaute
 #define FA_UE LOPT(KC_F4)
@@ -33,7 +31,7 @@
 
 // Thumb Cluster Left
 #define FA_TAB LCMD_T(KC_TAB)               // Tab              |        Cmd
-#define FA_SPC LCAG_T(KC_SPC)               // Space            |        TRIPPLE
+#define FA_SPC HYPR_T(KC_SPC)               // Space            |        HYPER
 #define FA_QOP LSG_T(KC_F20)                // Open Quickly     |        Cmd + Shift
 
 // Thumb Cluster Right
@@ -61,13 +59,13 @@ enum custom_keycodes {
 
 // MARK: - Combos
 const uint16_t PROGMEM combo_upper_piano_keys[] = {LCMD_T(KC_TAB), LAG_T(KC_ESC), COMBO_END};
-const uint16_t PROGMEM combo_middle_piano_keys[] = {LCAG_T(KC_SPC), LCAG_T(KC_ENT), COMBO_END};
+const uint16_t PROGMEM combo_middle_piano_keys[] = {HYPR_T(KC_SPC), LCAG_T(KC_ENT), COMBO_END};
 const uint16_t PROGMEM combo_lower_piano_keys[] = {LSG_T(KC_F20), LAG_T(LCTL(KC_F19)), COMBO_END};
 
 const uint16_t PROGMEM combo_a_scln[] = {KC_A, KC_SCLN, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
-    COMBO(combo_upper_piano_keys, KC_HYPR),
+    COMBO(combo_upper_piano_keys, LCA(KC_LGUI)),
     COMBO(combo_middle_piano_keys, LGUI(KC_LCTL)),
     COMBO(combo_lower_piano_keys, LCA(KC_LGUI)),
     COMBO(combo_a_scln, TG(NUM))
@@ -76,19 +74,19 @@ combo_t key_combos[COMBO_COUNT] = {
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_moonlander(
-        KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    FA_NOM,            FA_MAG,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,
+        KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    _______,           _______, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,
         FA_RVL,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    FA_DEC,            FA_INC,  KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
         FA_BSPC, KC_A,    KC_S,    FA_D,    FA_F,    KC_G,    MA_0,              MA_1,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, FA_QUOT,
-        FA_GRV,  FA_Z,    FA_X,    KC_C,    KC_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, FA_DOT,  FA_SLSH, FA_LCBR,
-        KC_GRV,  QK_BOOT, KC_LCTL, KC_LOPT, KC_LCMD,          KC_F18,            KC_ESC,           KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, QK_BOOT,
+        FA_GRV,  FA_Z,    FA_X,    KC_C,    KC_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, FA_DOT,  FA_SLSH, FA_FCS,
+        KC_GRV,  KC_F6,   KC_LCTL, KC_LOPT, KC_LCMD,          KC_F18,            KC_ESC,           KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, QK_BOOT,
                                             FA_TAB,  FA_SPC,  FA_QOP,            FA_PLT,  FA_ENT,  FA_ESC
     ),
 
     [NEO] = LAYOUT_moonlander(
         _______, _______, _______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, _______, _______,
-        _______, KC_EXLM, KC_AT,   KC_ASTR, KC_AMPR, KC_TILD, _______,           _______, _______, KC_UNDS, KC_LPRN, KC_RPRN, KC_PLUS, _______,
+        _______, KC_EXLM, KC_AT,   KC_ASTR, KC_AMPR, KC_TILD, _______,           _______, _______, KC_UNDS, KC_LPRN, KC_RPRN, KC_UP,   KC_PLUS,
         _______, KC_CIRC, KC_TILD, KC_HASH, KC_DLR,  KC_PERC, _______,           _______, KC_MINS, KC_RCBR, KC_LCBR, KC_RCBR, KC_MINS, KC_EQL,
-        _______, KC_GRV,  KC_BSLS, KC_SLSH, KC_PIPE, _______,                             _______, KC_ASTR, KC_LBRC, KC_RBRC, _______, _______,
+        _______, KC_GRV,  KC_BSLS, KC_SLSH, KC_PIPE, _______,                             KC_DOWN, KC_ASTR, KC_LBRC, KC_RBRC, _______, _______,
         _______, _______, _______, _______, _______,          _______,           _______,          _______, _______, _______, _______, _______,
                                             _______, _______, _______,           _______,_______, _______
     ),
@@ -104,8 +102,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [NUM] = LAYOUT_moonlander(
         _______, _______, _______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, _______, _______,
-        _______, _______, _______, _______, _______, _______, _______,           _______, _______,    KC_7,    KC_8,    KC_9, MA_SZ,   MA_UE,
-        _______, _______, _______, _______, _______, _______, _______,           _______, _______,    KC_4,    KC_5,    KC_6, MA_OE,   MA_AE,
+        _______, _______, _______, _______, _______, _______, _______,           _______, _______,    KC_7,    KC_8,    KC_9, _______, _______,
+        _______, _______, _______, _______, _______, _______, _______,           _______, _______,    KC_4,    KC_5,    KC_6, _______, _______,
         _______, _______, _______, _______, _______, _______,                             _______,    KC_1,    KC_2,    KC_3, _______, _______,
         _______, _______, _______, _______, _______,          _______,           _______,          _______, _______, _______, _______, _______,
                                             _______, _______, _______,           _______, KC_0,    TG(NUM)
