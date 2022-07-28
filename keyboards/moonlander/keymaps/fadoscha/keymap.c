@@ -51,10 +51,7 @@ enum layers {
 enum custom_keycodes {
     MA_0 = ML_SAFE_RANGE,
     MA_1,
-    MA_AE,
-    MA_UE,
-    MA_OE,
-    MA_SZ
+    MA_X
 };
 
 // MARK: - Combos
@@ -78,7 +75,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         FA_RVL,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    FA_DEC,            FA_INC,  KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
         FA_BSPC, KC_A,    KC_S,    FA_D,    FA_F,    KC_G,    MA_0,              MA_1,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, FA_QUOT,
         FA_GRV,  FA_Z,    FA_X,    KC_C,    KC_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, FA_DOT,  FA_SLSH, FA_FCS,
-        KC_GRV,  KC_F6,   KC_LCTL, KC_LOPT, KC_LCMD,          KC_F18,            KC_ESC,           KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, QK_BOOT,
+        KC_GRV,  KC_F6,   KC_LCTL, KC_LOPT, KC_LCMD,          KC_DOWN,           KC_UP,            KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, QK_BOOT,
                                             FA_TAB,  FA_SPC,  FA_QOP,            FA_PLT,  FA_ENT,  FA_ESC
     ),
 
@@ -87,7 +84,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, KC_EXLM, KC_AT,   KC_ASTR, KC_AMPR, KC_TILD, _______,           _______, _______, KC_UNDS, KC_LPRN, KC_RPRN, KC_UP,   KC_PLUS,
         _______, KC_CIRC, KC_TILD, KC_HASH, KC_DLR,  KC_PERC, _______,           _______, KC_MINS, KC_RCBR, KC_LCBR, KC_RCBR, KC_MINS, KC_EQL,
         _______, KC_GRV,  KC_BSLS, KC_SLSH, KC_PIPE, _______,                             KC_DOWN, KC_ASTR, KC_LBRC, KC_RBRC, _______, _______,
-        _______, _______, _______, _______, _______,          _______,           _______,          _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______,          MA_X,              MA_X,             _______, _______, _______, _______, _______,
                                             _______, _______, _______,           _______,_______, _______
     ),
 
@@ -225,17 +222,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case MA_1:
             SEND_STRING("^lrx" SS_DELAY(100) SS_TAP(X_ESCAPE));
             break;
-        case MA_AE:
-            SEND_STRING(SS_LALT("u") SS_DELAY(100) "a");
-            break;
-        case MA_OE:
-            SEND_STRING(SS_LALT("u") SS_DELAY(100) "o");
-            break;
-        case MA_UE:
-            SEND_STRING(SS_LALT("u") SS_DELAY(100) "u");
-            break;
-        case MA_SZ:
-            SEND_STRING(SS_LALT("s"));
+        case MA_X:
+            SEND_STRING("Das ist das Haus vom Nikolaus." SS_DELAY(100) SS_TAP(X_ENTER));
             break;
         }
     }
