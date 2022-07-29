@@ -27,6 +27,11 @@
 #define FA_UE LOPT(KC_U)
 #define FA_SS LOPT(KC_S)
 
+// Copy Paste
+#define FA_CPY LGUI(KC_C)
+#define FA_PST LGUI(KC_V)
+#define FA_CUT LGUI(KC_X)
+
 // Thumb Cluster Left
 #define FA_TAB LCMD_T(KC_TAB)               // Tab              |        Cmd
 #define FA_SPC HYPR_T(KC_SPC)               // Space            |        HYPER
@@ -81,7 +86,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______, _______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, _______, _______,
         _______, KC_EXLM, KC_AT,   KC_ASTR, KC_AMPR, KC_TILD, _______,           _______, KC_UNDS, FA_UE,   KC_LPRN, KC_RPRN, KC_UP,   KC_PLUS,
         _______, KC_CIRC, FA_SS,   KC_HASH, KC_DLR,  KC_PERC, _______,           _______, KC_MINS, KC_RCBR, KC_LCBR, KC_RCBR, KC_MINS, KC_EQL,
-        _______, KC_GRV,  KC_BSLS, KC_SLSH, KC_PIPE, _______,                             KC_DOWN, KC_ASTR, KC_LBRC, KC_RBRC, KC_UNDS, _______,
+        _______, KC_GRV,  FA_CUT,  FA_CPY,  FA_PST,  KC_PIPE,                             KC_DOWN, KC_ASTR, KC_LBRC, KC_RBRC, KC_UNDS, KC_PIPE,
         _______, _______, _______, _______, _______,          MA_X,              MA_X,             _______, _______, _______, _______, _______,
                                             _______, _______, _______,           _______,_______, _______
     ),
