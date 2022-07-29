@@ -24,10 +24,8 @@
 #define FA_INC LGUI(KC_EQUAL)
 
 // Umlaute
-#define FA_UE LOPT(KC_F4)
-#define FA_AE LOPT(KC_F4)
-#define FA_OE LOPT(KC_F4)
-#define FA_SZ LOPT(KC_F4)
+#define FA_UE LOPT(KC_U)
+#define FA_SS LOPT(KC_S)
 
 // Thumb Cluster Left
 #define FA_TAB LCMD_T(KC_TAB)               // Tab              |        Cmd
@@ -81,9 +79,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [NEO] = LAYOUT_moonlander(
         _______, _______, _______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, _______, _______,
-        _______, KC_EXLM, KC_AT,   KC_ASTR, KC_AMPR, KC_TILD, _______,           _______, _______, KC_UNDS, KC_LPRN, KC_RPRN, KC_UP,   KC_PLUS,
-        _______, KC_CIRC, KC_TILD, KC_HASH, KC_DLR,  KC_PERC, _______,           _______, KC_MINS, KC_RCBR, KC_LCBR, KC_RCBR, KC_MINS, KC_EQL,
-        _______, KC_GRV,  KC_BSLS, KC_SLSH, KC_PIPE, _______,                             KC_DOWN, KC_ASTR, KC_LBRC, KC_RBRC, _______, _______,
+        _______, KC_EXLM, KC_AT,   KC_ASTR, KC_AMPR, KC_TILD, _______,           _______, KC_UNDS, FA_UE,   KC_LPRN, KC_RPRN, KC_UP,   KC_PLUS,
+        _______, KC_CIRC, FA_SS,   KC_HASH, KC_DLR,  KC_PERC, _______,           _______, KC_MINS, KC_RCBR, KC_LCBR, KC_RCBR, KC_MINS, KC_EQL,
+        _______, KC_GRV,  KC_BSLS, KC_SLSH, KC_PIPE, _______,                             KC_DOWN, KC_ASTR, KC_LBRC, KC_RBRC, KC_UNDS, _______,
         _______, _______, _______, _______, _______,          MA_X,              MA_X,             _______, _______, _______, _______, _______,
                                             _______, _______, _______,           _______,_______, _______
     ),
