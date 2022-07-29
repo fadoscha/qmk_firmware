@@ -226,7 +226,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             SEND_STRING("^lrx" SS_DELAY(100) SS_TAP(X_ESCAPE));
             break;
         case MA_X:
-            SEND_STRING("Das ist das Haus vom Nikolaus." SS_DELAY(100) SS_TAP(X_ENTER));
+            SEND_STRING("Das ist das Haus vom Nikolaus." SS_DELAY(200) SS_TAP(X_ENTER));
             break;
         }
     }
