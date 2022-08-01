@@ -40,7 +40,7 @@
 
 // Thumb Cluster Right
 #define FA_ESC LAG_T(KC_ESC)                // ESC              |        Cmd + Alt
-#define FA_ENT LCAG_T(KC_ENT)               // Enter            |        TRIPPLE
+#define FA_ENT LGUI_T(KC_ENT)               // Enter            |        Cmd
 #define FA_PLT LSG_T(LCTL(KC_F19))          // Command Palette  |        Cmd + Shift + Str
 
 enum layers {
@@ -61,7 +61,7 @@ enum custom_keycodes {
 
 // MARK: - Combos
 const uint16_t PROGMEM combo_upper_piano_keys[] = {LCMD_T(KC_TAB), LAG_T(KC_ESC), COMBO_END};
-const uint16_t PROGMEM combo_middle_piano_keys[] = {HYPR_T(KC_SPC), LCAG_T(KC_ENT), COMBO_END};
+const uint16_t PROGMEM combo_middle_piano_keys[] = {HYPR_T(KC_SPC), LGUI_T(KC_ENT), COMBO_END};
 const uint16_t PROGMEM combo_lower_piano_keys[] = {LSG_T(KC_F20), LAG_T(LCTL(KC_F19)), COMBO_END};
 
 const uint16_t PROGMEM combo_a_scln[] = {KC_A, KC_SCLN, COMBO_END};
