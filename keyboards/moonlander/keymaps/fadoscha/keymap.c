@@ -8,8 +8,9 @@
 // Left Half
 #define FA_Z LT(NEO, KC_Z)
 #define FA_X LOPT_T(KC_X)
-#define FA_D LT(NAV, KC_D)
-#define FA_F LOPT_T(KC_F)
+#define FA_C LT(NAV, KC_C)
+#define FA_V LT(NUM, KC_V)
+
 #define FA_GRV LCTL_T(KC_GRV)
 #define FA_RVL LGUI(LSFT(KC_J))
 
@@ -77,8 +78,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_moonlander(
         KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    _______,           _______, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,
         FA_RVL,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    FA_DEC,            FA_INC,  KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
-        FA_BSPC, KC_A,    KC_S,    FA_D,    FA_F,    KC_G,    MA_0,              MA_1,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, FA_QUOT,
-        FA_GRV,  FA_Z,    FA_X,    KC_C,    KC_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, FA_DOT,  FA_SLSH, FA_FCS,
+        FA_BSPC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    MA_0,              MA_1,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, FA_QUOT,
+        FA_GRV,  FA_Z,    FA_X,    FA_C,    FA_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, FA_DOT,  FA_SLSH, FA_FCS,
         KC_GRV,  KC_F6,   KC_LCTL, KC_LOPT, KC_LCMD,          KC_DOWN,           KC_UP,            KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, QK_BOOT,
                                             FA_TAB,  FA_SPC,  FA_QOP,            FA_PLT,  FA_ENT,  FA_ESC
     ),
