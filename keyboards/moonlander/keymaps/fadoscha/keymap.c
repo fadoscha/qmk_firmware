@@ -6,8 +6,9 @@
 #define FA_QUOT RSFT_T(KC_QUOT)
 
 // Left Half
-#define FA_Z LT(NEO, KC_Z)
-#define FA_X LOPT_T(KC_X)
+#define FA_Z LOPT_T(KC_Z)
+#define FA_X LT(NEO, KC_X)
+
 #define FA_C LT(NAV, KC_C)
 #define FA_V LT(NUM, KC_V)
 
@@ -15,8 +16,9 @@
 #define FA_RVL LGUI(KC_0)
 
 // Right Half
-#define FA_DOT LOPT_T(KC_DOT)
-#define FA_SLSH LT(NEO, KC_SLSH)
+#define FA_DOT LT(NEO, KC_DOT)
+#define FA_SLSH LOPT_T(KC_SLSH)
+
 #define FA_LCBR ROPT_T(KC_LCBR)
 #define FA_FCS LCTL(LOPT(LCMD(KC_SCLN)))    // Change focus of editos
 
