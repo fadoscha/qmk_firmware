@@ -12,7 +12,7 @@
 #define FA_V LT(NUM, KC_V)
 
 #define FA_GRV LCTL_T(KC_GRV)
-#define FA_RVL LGUI(LSFT(KC_J))
+#define FA_RVL LGUI(KC_0)
 
 // Right Half
 #define FA_DOT LOPT_T(KC_DOT)
