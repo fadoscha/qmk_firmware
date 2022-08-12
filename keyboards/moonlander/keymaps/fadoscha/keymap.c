@@ -4,6 +4,8 @@
 // MARK: - Custom Modifier Keys
 #define FA_BSPC LSFT_T(KC_BSPC)
 #define FA_QUOT RSFT_T(KC_QUOT)
+#define FA_QUIT LGUI(KC_Q)
+#define FA_CLOSE LGUI(KC_W)
 
 // Left Half
 #define FA_Z LOPT_T(KC_Z)
@@ -38,7 +40,8 @@
 // Thumb Cluster Left
 #define FA_TAB LCMD_T(KC_TAB)               // Tab              |        Cmd
 #define FA_SPC HYPR_T(KC_SPC)               // Space            |        HYPER
-#define FA_QOP LSG_T(KC_F20)                // Open Quickly     |        Cmd + Shift
+#define FA_QOP LSG_T(KC_F20)                // Open Quickly     |        Cmd + Shift 
+#define FA_HDE LSG(KC_X)                    // Focus Xcode      |        Cmd + Shift + x
 
 // Thumb Cluster Right
 #define FA_ESC LAG_T(KC_ESC)                // ESC              |        Cmd + Alt
@@ -88,11 +91,11 @@ combo_t key_combos[COMBO_COUNT] = {
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_moonlander(
-        KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    _______,           _______, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,
+        FA_QUIT, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    FA_CLOSE,          _______, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,
         FA_RVL,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    FA_DEC,            FA_INC,  KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
         FA_BSPC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    MA_0,              MA_1,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, FA_QUOT,
         FA_GRV,  FA_Z,    FA_X,    FA_C,    FA_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, FA_DOT,  FA_SLSH, FA_FCS,
-        KC_GRV,  KC_F6,   KC_LCTL, KC_LOPT, KC_LCMD,          KC_DOWN,           KC_UP,            KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, QK_BOOT,
+        KC_GRV,  KC_F6,   KC_LCTL, KC_LOPT, KC_LCMD,          FA_HDE,           KC_UP,            KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, QK_BOOT,
                                             FA_TAB,  FA_SPC,  FA_QOP,            FA_PLT,  FA_ENT,  FA_ESC
     ),
 
@@ -249,7 +252,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             SEND_STRING("^lrx" SS_DELAY(100) SS_TAP(X_ESCAPE));
             break;
         case MA_2:
-            SEND_STRING(" -> ");
+            SEND_STRING("->");
             break;
         case MA_X:
             SEND_STRING("Das ist das Haus vom Nikolaus." SS_DELAY(200) SS_TAP(X_ENTER));
