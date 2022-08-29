@@ -7,6 +7,7 @@
 #define FA_QUIT LGUI(KC_Q)
 #define FA_CLOSE LGUI(KC_W)
 
+
 // Left Half
 #define FA_Z LOPT_T(KC_Z)
 #define FA_X LT(NEO, KC_X)
@@ -38,15 +39,16 @@
 #define FA_CUT LGUI(KC_X)
 
 // Thumb Cluster Left
-#define FA_TAB LCMD_T(KC_TAB)               // Tab              |        Cmd
-#define FA_SPC HYPR_T(KC_SPC)               // Space            |        HYPER
-#define FA_QOP LSG_T(KC_F20)                // Open Quickly     |        Cmd + Shift 
-#define FA_HDE LSG(KC_X)                    // Focus Xcode      |        Cmd + Shift + x
+#define FA_TAB LCMD_T(KC_TAB)               // Tab              |        cmd
+#define MOD_1  LSA_T(KC_SPC)                // Amethyst mod1    |        option + shift
+#define FA_QOP LSG_T(KC_F20)                // Open Quickly     |        cmd + shift 
+#define FA_RUN LGUI(KC_R)                   // Xcode Run        |        cmd + r
+
 
 // Thumb Cluster Right
-#define FA_ESC LAG_T(KC_ESC)                // ESC              |        Cmd + Alt
-#define FA_ENT LCAG_T(KC_ENT)               // Enter            |        Cmd + Alt + Ctr
-#define FA_PLT LSG_T(LCTL(KC_F19))          // Command Palette  |        Cmd + Shift + Str
+#define FA_ESC LAG_T(KC_ESC)                // ESC              |        cmd + option
+#define MOD_2  MEH_T(KC_ENT)                // Amethyst mod2    |        ctrl + option + shift 
+#define FA_ALF HYPR_T(LCTL(KC_F19))         // Alfred           |        hyper 
 
 // Multi Cursor
 #define FA_MCD LCTL(LSFT(KC_DOWN))
@@ -74,18 +76,10 @@ enum custom_keycodes {
 };
 
 // MARK: - Combos
-const uint16_t PROGMEM combo_upper_piano_keys[] = {LCMD_T(KC_TAB), LAG_T(KC_ESC), COMBO_END};
-const uint16_t PROGMEM combo_middle_piano_keys[] = {HYPR_T(KC_SPC), LCAG_T(KC_ENT), COMBO_END};
-const uint16_t PROGMEM combo_lower_piano_keys[] = {LSG_T(KC_F20), LAG_T(LCTL(KC_F19)), COMBO_END};
-const uint16_t PROGMEM combo_z_x_keys[] = {LOPT_T(KC_Z), LT(NEO, KC_X), COMBO_END};
-const uint16_t PROGMEM combo_a_scln[] = {KC_A, KC_SCLN, COMBO_END};
+const uint16_t PROGMEM combo_middle_piano_keys[] = {LSA_T(KC_SPC), MEH_T(KC_ENT), COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
-    COMBO(combo_upper_piano_keys, LCA(KC_LGUI)),
-    COMBO(combo_middle_piano_keys, HYPR(KC_ENT)),
-    COMBO(combo_lower_piano_keys, LCA(KC_LGUI)),
-    COMBO(combo_z_x_keys, MO(CTRL)),
-    COMBO(combo_a_scln, TG(NUM))
+    COMBO(combo_middle_piano_keys, LGUI(KC_SPC)),
 };
 
 // clang-format off
@@ -95,8 +89,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         FA_RVL,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    FA_DEC,            FA_INC,  KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
         FA_BSPC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    MA_0,              MA_1,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, FA_QUOT,
         FA_GRV,  FA_Z,    FA_X,    FA_C,    FA_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, FA_DOT,  FA_SLSH, FA_FCS,
-        KC_GRV,  KC_F6,   KC_LCTL, KC_LOPT, KC_LCMD,          FA_HDE,           KC_UP,            KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, QK_BOOT,
-                                            FA_TAB,  FA_SPC,  FA_QOP,            FA_PLT,  FA_ENT,  FA_ESC
+        KC_GRV,  KC_F6,   KC_LCTL, KC_LOPT, KC_LCMD,          FA_RUN,            KC_UP,            KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, QK_BOOT,
+                                            FA_TAB,  MOD_1,   FA_QOP,            FA_ALF,  MOD_2,   FA_ESC
     ),
 
     [NEO] = LAYOUT_moonlander(
@@ -255,7 +249,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             SEND_STRING("->");
             break;
         case MA_X:
-            SEND_STRING("Das ist das Haus vom Nikolaus." SS_DELAY(200) SS_TAP(X_ENTER));
+            SEND_STRING("Das ist das Haus vom Nikolaus" SS_DELAY(200) SS_TAP(X_ENTER));
             break;
         }
     }
