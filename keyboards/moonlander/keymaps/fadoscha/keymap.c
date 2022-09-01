@@ -41,14 +41,15 @@
 // Thumb Cluster Left
 #define FA_TAB LCMD_T(KC_TAB)               // Tab              |        cmd
 #define MOD_1  LSA_T(KC_SPC)                // Amethyst mod1    |        option + shift
-#define FA_QOP LSG_T(KC_F20)                // Open Quickly     |        cmd + shift 
+#define MOD_2  MEH_T(KC_F20)                // Amethyst mod2    |        ctrl + option + shift 
 #define FA_RUN LGUI(KC_R)                   // Xcode Run        |        cmd + r
 
 
 // Thumb Cluster Right
-#define FA_ESC LAG_T(KC_ESC)                // ESC              |        cmd + option
-#define MOD_2  MEH_T(KC_ENT)                // Amethyst mod2    |        ctrl + option + shift 
-#define FA_ALF HYPR_T(LCTL(KC_F19))         // Alfred           |        hyper 
+#define FA_ESC LSG_T(KC_ESC)                // ESC              |        cmd + shift
+#define FA_ENT HYPR_T(KC_ENT)               // Enter            |        hyper
+#define FA_ALF LAG_T(LCTL(KC_F19))          // Alfred           |        cmd + option 
+#define FA_PLT LGUI(LSFT(KC_P))             // cmd + shift + p
 
 // Multi Cursor
 #define FA_MCD LCTL(LSFT(KC_DOWN))
@@ -89,8 +90,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         FA_RVL,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    FA_DEC,            FA_INC,  KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
         FA_BSPC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    MA_0,              MA_1,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, FA_QUOT,
         FA_GRV,  FA_Z,    FA_X,    FA_C,    FA_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, FA_DOT,  FA_SLSH, FA_FCS,
-        KC_GRV,  KC_F6,   KC_LCTL, KC_LOPT, KC_LCMD,          FA_RUN,            KC_UP,            KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, QK_BOOT,
-                                            FA_TAB,  MOD_1,   FA_QOP,            FA_ALF,  MOD_2,   FA_ESC
+        KC_GRV,  KC_F6,   KC_LCTL, KC_LOPT, KC_LCMD,          FA_RUN,            FA_PLT,           KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, QK_BOOT,
+                                            FA_TAB,  MOD_1,   MOD_2,             FA_ALF,  FA_ENT,  FA_ESC
     ),
 
     [NEO] = LAYOUT_moonlander(
