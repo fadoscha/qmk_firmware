@@ -72,6 +72,7 @@ enum custom_keycodes {
     MA_0 = ML_SAFE_RANGE,
     MA_1,
     MA_2,
+    MA_3,
     MA_X
 };
 
@@ -95,7 +96,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [NEO] = LAYOUT_moonlander(
         _______, _______, _______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, _______, _______,
-        _______, KC_EXLM, KC_AT,   KC_ASTR, KC_AMPR, KC_TILD, _______,           _______, KC_UNDS, FA_UE,   KC_LPRN, KC_RPRN, KC_UP,   KC_PLUS,
+        _______, KC_EXLM, KC_AT,   KC_ASTR, KC_AMPR, KC_TILD, _______,           _______, MA_3,    FA_UE,   KC_LPRN, KC_RPRN, KC_UP,   KC_PLUS,
         _______, KC_CIRC, FA_SS,   KC_HASH, KC_DLR,  KC_PERC, _______,           _______, MA_2,    KC_RCBR, KC_LCBR, KC_RCBR, KC_MINS, KC_EQL,
         _______, KC_GRV,  FA_CUT,  FA_CPY,  FA_PST,  KC_PIPE,                             KC_DOWN, KC_ASTR, KC_LBRC, KC_RBRC, KC_UNDS, KC_PIPE,
         _______, _______, _______, _______, _______,          MA_X,              MA_X,             _______, _______, _______, _______, _______,
@@ -247,6 +248,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
         case MA_2:
             SEND_STRING("->");
+            break;
+        case MA_3:
+            SEND_STRING("\\()" SS_DELAY(200) SS_TAP(X_LEFT));
             break;
         case MA_X:
             SEND_STRING("Das ist das Haus vom Nikolaus" SS_DELAY(200) SS_TAP(X_ENTER));
