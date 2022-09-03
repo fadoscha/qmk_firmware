@@ -9,25 +9,25 @@
 
 
 // Left Half
-#define FA_Z LOPT_T(KC_Z)
+#define FA_Z LCTL_T(KC_Z)
 #define FA_X LT(NEO, KC_X)
 
 #define FA_C LT(NAV, KC_C)
 #define FA_V LT(NUM, KC_V)
 
-#define FA_GRV LCTL_T(KC_GRV)
+#define FA_GRV LOPT_T(KC_GRV)
 #define FA_RVL LGUI(KC_0)
 
 // Right Half
 #define FA_DOT LT(NEO, KC_DOT)
-#define FA_SLSH LOPT_T(KC_SLSH)
+#define FA_SLSH RCTL_T(KC_SLSH)
 
-#define FA_LCBR ROPT_T(KC_LCBR)
-#define FA_FCS LCTL(LOPT(LCMD(KC_SCLN)))    // Change focus of editos
+#define FA_EQL ROPT_T(KC_EQL)
+#define FA_FCS LGUI(LSFT(KC_X))             // Focus Xcode      |       cmd + shift + x
 
 // Inrease Decrease
-#define FA_DEC LGUI(KC_MINUS)
-#define FA_INC LGUI(KC_EQUAL)
+#define FA_DEC LGUI(KC_MINUS)               // Decrease size    |       cmd + -
+#define FA_INC LGUI(KC_EQUAL)               // Increase size    |       cmd + =
 
 // Umlaute
 #define FA_UE LOPT(KC_U)
@@ -50,7 +50,6 @@
 #define FA_ENT HYPR_T(KC_ENT)               // Enter            |        hyper
 #define FA_ALF LAG_T(LCTL(KC_F19))          // Alfred           |        cmd + option 
 #define FA_PLT LGUI(LSFT(KC_P))             // cmd + shift + p
-
 // Multi Cursor
 #define FA_MCD LCTL(LSFT(KC_DOWN))
 #define FA_MCU LCTL(LSFT(KC_UP))
@@ -86,11 +85,11 @@ combo_t key_combos[COMBO_COUNT] = {
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_moonlander(
-        FA_QUIT, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    FA_CLOSE,          _______, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,
-        FA_RVL,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    FA_DEC,            FA_INC,  KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
+        FA_QUIT, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    FA_CLOSE,          _______, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSLS,
+        FA_RVL,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    FA_DEC,            FA_INC,  KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_MINS,
         FA_BSPC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    MA_0,              MA_1,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, FA_QUOT,
-        FA_GRV,  FA_Z,    FA_X,    FA_C,    FA_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, FA_DOT,  FA_SLSH, FA_FCS,
-        KC_GRV,  KC_F6,   KC_LCTL, KC_LOPT, KC_LCMD,          FA_RUN,            FA_PLT,           KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, QK_BOOT,
+        FA_GRV,  FA_Z,    FA_X,    FA_C,    FA_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, FA_DOT,  FA_SLSH, FA_EQL,
+        FA_FCS,  KC_F6,   KC_LCTL, KC_LOPT, KC_LCMD,          FA_RUN,            FA_PLT,           KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, QK_BOOT,
                                             FA_TAB,  MOD_1,   MOD_2,             FA_ALF,  FA_ENT,  FA_ESC
     ),
 
