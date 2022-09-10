@@ -2,27 +2,27 @@
 #include "version.h"
 
 // MARK: - Custom Modifier Keys
-#define FA_BSPC LSFT_T(KC_BSPC)
-#define FA_QUOT RSFT_T(KC_QUOT)
+#define FA_BSPC LT(NEO, KC_BSPC)
+#define FA_QUOT LT(NEO, KC_QUOT)
 #define FA_QUIT LGUI(KC_Q)
 #define FA_CLOSE LGUI(KC_W)
 
 
 // Left Half
 #define FA_Z LCTL_T(KC_Z)
-#define FA_X LT(NEO, KC_X)
+#define FA_X LOPT_T(KC_X)
 
-#define FA_C LT(NAV, KC_C)
+#define FA_C C_S_T(KC_C)
 #define FA_V LT(NUM, KC_V)
 
-#define FA_GRV LOPT_T(KC_GRV)
+#define FA_GRV LSFT_T(KC_GRV)
 #define FA_RVL LGUI(KC_0)
 
 // Right Half
-#define FA_DOT LT(NEO, KC_DOT)
+#define FA_DOT ROPT_T(KC_DOT)
 #define FA_SLSH RCTL_T(KC_SLSH)
 
-#define FA_EQL ROPT_T(KC_EQL)
+#define FA_EQL RSFT_T(KC_EQL)
 #define FA_FCS LGUI(LSFT(KC_X))             // Focus Xcode      |       cmd + shift + x
 
 // Inrease Decrease
@@ -73,6 +73,8 @@ enum custom_keycodes {
     MA_1,
     MA_2,
     MA_3,
+    MA_4,
+    MA_5,
     MA_X
 };
 
@@ -86,19 +88,20 @@ combo_t key_combos[COMBO_COUNT] = {
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_moonlander(
-        FA_QUIT, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    FA_CLOSE,          _______, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSLS,
+        FA_QUIT, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    FA_CLOSE,          FA_INC,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSLS,
         FA_RVL,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    FA_DEC,            FA_INC,  KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_MINS,
-        FA_BSPC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    MA_0,              MA_1,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, FA_QUOT,
+        FA_BSPC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    FA_CPY,            FA_PST,  KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, FA_QUOT,
         FA_GRV,  FA_Z,    FA_X,    FA_C,    FA_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, FA_DOT,  FA_SLSH, FA_EQL,
         FA_FCS,  KC_F6,   KC_LCTL, KC_LOPT, KC_LCMD,          FA_RUN,            FA_PLT,           KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, QK_BOOT,
                                             FA_TAB,  MOD_1,   MOD_2,             FA_ALF,  FA_ENT,  FA_ESC
     ),
 
+
     [NEO] = LAYOUT_moonlander(
         _______, _______, _______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, _______, _______,
-        _______, KC_EXLM, KC_AT,   KC_ASTR, KC_AMPR, KC_TILD, _______,           _______, MA_3,    FA_UE,   KC_LPRN, KC_RPRN, KC_UP,   KC_PLUS,
-        _______, KC_CIRC, FA_SS,   KC_HASH, KC_DLR,  KC_PERC, _______,           _______, MA_2,    KC_RCBR, KC_LCBR, KC_RCBR, KC_MINS, KC_EQL,
-        _______, KC_GRV,  FA_CUT,  FA_CPY,  FA_PST,  KC_PIPE,                             KC_DOWN, KC_ASTR, KC_LBRC, KC_RBRC, KC_UNDS, KC_PIPE,
+        _______, KC_EXLM, KC_AT,   KC_ASTR, KC_AMPR, KC_TILD, _______,           _______, MA_3,    FA_UE,   KC_LPRN, KC_RPRN, KC_UP,   MA_5,
+        _______, KC_CIRC, FA_SS,   KC_HASH, KC_DLR,  KC_PERC, _______,           _______, MA_2,    KC_RCBR, KC_LCBR, KC_RCBR, MA_0,    KC_EQL,
+        _______, KC_GRV,  FA_CUT,  FA_CPY,  FA_PST,  KC_PIPE,                             KC_DOWN, MA_4,    KC_LBRC, KC_RBRC, MA_1,    KC_PIPE,
         _______, _______, _______, _______, _______,          MA_X,              MA_X,             _______, _______, _______, _______, _______,
                                             _______, _______, _______,           _______,_______, _______
     ),
@@ -241,16 +244,22 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
         switch (keycode) {
         case MA_0:
-            SEND_STRING("[ ] ");
+            SEND_STRING("- [ ] ");
             break;
         case MA_1:
-            SEND_STRING("^lrx" SS_DELAY(100) SS_TAP(X_ESCAPE));
+            SEND_STRING("^f[lrx" SS_DELAY(100) SS_TAP(X_ESCAPE));
             break;
         case MA_2:
             SEND_STRING("->");
             break;
         case MA_3:
             SEND_STRING("\\()" SS_DELAY(200) SS_TAP(X_LEFT));
+            break;
+        case MA_4:
+            SEND_STRING("// MARK: - ");
+            break;
+        case MA_5:
+            SEND_STRING("^f[lrx" SS_DELAY(100) SS_TAP(X_ESCAPE) "dd" SS_DELAY(100) "}}" SS_DELAY(100) "P" SS_DELAY(100) "{{");
             break;
         case MA_X:
             SEND_STRING("Das ist das Haus vom Nikolaus" SS_DELAY(200) SS_TAP(X_ENTER));
