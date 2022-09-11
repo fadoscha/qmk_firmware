@@ -2,14 +2,14 @@
 #include "version.h"
 
 // MARK: - Custom Modifier Keys
-#define FA_BSPC LT(NEO, KC_BSPC)
-#define FA_QUOT LT(NEO, KC_QUOT)
+#define FA_BSPC LCTL_T(KC_BSPC)
+#define FA_QUOT RCTL_T(KC_QUOT)
 #define FA_QUIT LGUI(KC_Q)
 #define FA_CLOSE LGUI(KC_W)
 
 
 // Left Half
-#define FA_Z LCTL_T(KC_Z)
+#define FA_Z LT(NEO, KC_Z)
 #define FA_X LOPT_T(KC_X)
 
 #define FA_C C_S_T(KC_C)
@@ -20,7 +20,7 @@
 
 // Right Half
 #define FA_DOT ROPT_T(KC_DOT)
-#define FA_SLSH RCTL_T(KC_SLSH)
+#define FA_SLSH LT(NEO, KC_SLSH)
 
 #define FA_EQL RSFT_T(KC_EQL)
 #define FA_FCS LGUI(LSFT(KC_X))             // Focus Xcode      |       cmd + shift + x
@@ -37,6 +37,10 @@
 #define FA_CPY LGUI(KC_C)
 #define FA_PST LGUI(KC_V)
 #define FA_CUT LGUI(KC_X)
+
+#define FA_NXT LSA(KC_COMM)
+#define FA_PRV MEH(KC_DOT)
+
 
 // Thumb Cluster Left
 #define FA_TAB LCMD_T(KC_TAB)               // Tab              |        cmd
@@ -90,7 +94,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_moonlander(
         FA_QUIT, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    FA_CLOSE,          FA_INC,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSLS,
         FA_RVL,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    FA_DEC,            FA_INC,  KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_MINS,
-        FA_BSPC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    FA_CPY,            FA_PST,  KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, FA_QUOT,
+        FA_BSPC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    FA_NXT,            FA_PRV,  KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, FA_QUOT,
         FA_GRV,  FA_Z,    FA_X,    FA_C,    FA_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, FA_DOT,  FA_SLSH, FA_EQL,
         FA_FCS,  KC_F6,   KC_LCTL, KC_LOPT, KC_LCMD,          FA_RUN,            FA_PLT,           KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, QK_BOOT,
                                             FA_TAB,  MOD_1,   MOD_2,             FA_ALF,  FA_ENT,  FA_ESC
@@ -98,10 +102,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
     [NEO] = LAYOUT_moonlander(
-        _______, _______, _______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, _______, _______,
-        _______, KC_EXLM, KC_AT,   KC_ASTR, KC_AMPR, KC_TILD, _______,           _______, MA_3,    FA_UE,   KC_LPRN, KC_RPRN, KC_UP,   MA_5,
-        _______, KC_CIRC, FA_SS,   KC_HASH, KC_DLR,  KC_PERC, _______,           _______, MA_2,    KC_RCBR, KC_LCBR, KC_RCBR, MA_0,    KC_EQL,
-        _______, KC_GRV,  FA_CUT,  FA_CPY,  FA_PST,  KC_PIPE,                             KC_DOWN, MA_4,    KC_LBRC, KC_RBRC, MA_1,    KC_PIPE,
+        _______, _______, _______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, _______, MA_3,
+        _______, KC_EXLM, KC_AT,   KC_ASTR, KC_AMPR, KC_TILD, _______,           _______, MA_3,    FA_UE,   KC_LPRN, KC_RPRN, KC_RCBR, KC_EQL,
+        _______, KC_CIRC, FA_SS,   KC_HASH, KC_DLR,  KC_PERC, _______,           _______, KC_LBRC, KC_LCBR, KC_RCBR, KC_RBRC, KC_RPRN, KC_RCBR,
+        _______, MA_1,    MA_0,    FA_CPY,  FA_PST,  KC_PIPE,                             MA_2,    MA_4,    KC_LBRC, KC_RBRC, KC_PIPE, KC_PIPE,
         _______, _______, _______, _______, _______,          MA_X,              MA_X,             _______, _______, _______, _______, _______,
                                             _______, _______, _______,           _______,_______, _______
     ),
