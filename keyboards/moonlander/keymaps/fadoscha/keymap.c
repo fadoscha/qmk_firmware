@@ -46,14 +46,14 @@
 #define MOD_1  LSA_T(KC_SPC)                // Amethyst mod1    |        option + shift
 #define MOD_2  MEH_T(KC_F20)                // Amethyst mod2    |        ctrl + option + shift 
 
-#define FA_RUN LGUI(KC_R)                   // Xcode Run        |        cmd + r
+#define FA_RUN LGUI(KC_R)                   // Xcode Run        |        cmd + r     
 
 // Thumb Cluster Right
 #define FA_ESC LSG_T(KC_ESC)                // ESC              |        cmd + shift
 #define FA_ENT HYPR_T(KC_ENT)               // Enter            |        hyper
-#define FA_ALF RGUI_T(LCTL(KC_F19))          // Alfred           |        cmd + option 
+#define FA_ALF RGUI_T(LCTL(KC_F19))         // Alfred           |        cmd + option 
 
-#define FA_PLT LAG_T(LSFT(KC_P))             // cmd + shift + p
+#define FA_PLT LAG_T(LSFT(LGUI(KC_P)))      // cmd + shift + p
 
 // Multi Cursor
 #define FA_MCD LCTL(LSFT(KC_DOWN))
@@ -187,6 +187,7 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
 
     [9] = { {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255} },
 };
+
 
 void set_layer_color(int layer) {
   for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
