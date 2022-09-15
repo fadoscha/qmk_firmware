@@ -3,7 +3,7 @@
 
 // Left Half
 #define FA_QUIT LGUI(KC_Q)
-#define FA_CLOSE LGUI(KC_W)
+#define FA_CLS LGUI(KC_W)
 
 #define FA_BSPC LOPT_T(KC_BSPC)
 #define FA_Z LCTL_T(KC_Z)
@@ -39,21 +39,21 @@
 #define FA_NXT LSA(KC_COMM)
 #define FA_PRV MEH(KC_DOT)
 #define FA_O LT(FUN, KC_O)
-
+#define FA_GOOGLE HYPR(KC_F1)
 
 // Thumb Cluster Left
 #define FA_TAB LCMD_T(KC_TAB)               // Tab              |        cmd
 #define MOD_1  LSA_T(KC_SPC)                // Amethyst mod1    |        option + shift
-#define MOD_2  MEH_T(KC_F20)                // Amethyst mod2    |        ctrl + option + shift 
+#define MOD_2  MEH_T(KC_F18)                // Amethyst mod2    |        ctrl + option + shift
 
-#define FA_RUN LGUI(KC_R)                   // Xcode Run        |        cmd + r     
+#define FA_RUN LGUI(KC_R)                   // Xcode Run        |        cmd + r
 
 // Thumb Cluster Right
 #define FA_ESC LSG_T(KC_ESC)                // ESC              |        cmd + shift
 #define FA_ENT HYPR_T(KC_ENT)               // Enter            |        hyper
-#define FA_ALF RGUI_T(LCTL(KC_F19))         // Alfred           |        cmd + option 
+#define FA_PLT LAG_T(KC_F19)                // cmd + shift + p
 
-#define FA_PLT LAG_T(LSFT(LGUI(KC_P)))      // cmd + shift + p
+#define FA_ALF RGUI_T(KC_F20)               // Alfred           |        cmd + option
 
 // Multi Cursor
 #define FA_MCD LCTL(LSFT(KC_DOWN))
@@ -83,6 +83,7 @@ enum custom_keycodes {
     Vi_gg,
     Vi_G,
     Vi_s,
+    Vi_g_,
     MA_X
 };
 
@@ -96,9 +97,9 @@ combo_t key_combos[COMBO_COUNT] = {
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_moonlander(
-        FA_QUIT, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    FA_CLOSE,          FA_INC,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSLS,
-        KC_F16,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    FA_DEC,            FA_INC,  KC_Y,    KC_U,    KC_I,    FA_O,    KC_P,    KC_MINS,
-        FA_BSPC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    FA_NXT,            FA_PRV,  KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, FA_QUOT,
+        FA_CLS,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    FA_QUIT,           FA_INC,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSLS,
+        KC_F16,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    CAPSWRD,           FA_DEC,  KC_Y,    KC_U,    KC_I,    FA_O,    KC_P,    KC_MINS,
+        FA_BSPC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    FA_GOOGLE,         FA_PRV,  KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, FA_QUOT,
         FA_GRV,  FA_Z,    FA_X,    KC_C,    FA_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, FA_DOT,  FA_SLSH, FA_UNDS,
         FA_FCS,  KC_F6,   KC_LCTL, KC_LOPT, KC_LCMD,          FA_RUN,            FA_ALF,           KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, QK_BOOT,
                                             FA_TAB,  MOD_1,   MOD_2,             FA_PLT,  FA_ENT,  FA_ESC
@@ -116,7 +117,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [VIM] = LAYOUT_moonlander(
         _______, _______, _______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, _______, _______,
         _______, _______, _______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, _______, _______,
-        _______, _______, _______, _______, _______, _______, _______,           _______, KC_CIRC, Vi_G,    Vi_gg,   KC_DLR,  _______, Vi_s,
+        _______, _______, _______, _______, _______, _______, _______,           _______, KC_CIRC, Vi_G,    Vi_gg,   KC_DLR,  Vi_g_,   Vi_s,
         _______, _______, _______, _______, _______, _______,                             _______, _______, _______, _______, _______, _______,
         _______, _______, _______, _______, _______,          _______,           _______,          _______, _______, _______, _______, _______,
                                             _______, _______, _______,           _______, _______, _______
@@ -276,6 +277,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
         case Vi_s:
             SEND_STRING("vi\"");
+            break;
+        case Vi_g_:
+            SEND_STRING("g_");
             break;
         case MA_X:
             SEND_STRING("Das ist das Haus vom Nikolaus" SS_DELAY(200) SS_TAP(X_ENTER));
