@@ -1,5 +1,8 @@
 AUDIO_ENABLE = no
+RAW_ENABLE = yes
+ORYX_ENABLE = yes
 COMMAND_ENABLE = no
 CAPS_WORD_ENABLE = yes
 COMBO_ENABLE = yes
+
 SRC = matrix.c

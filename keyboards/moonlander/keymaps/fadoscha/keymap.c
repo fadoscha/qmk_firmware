@@ -1,26 +1,27 @@
 #include QMK_KEYBOARD_H
 #include "version.h"
+#include "raw_hid.h"
 
 // Left Half
 #define FA_QUIT LGUI(KC_Q)
 #define FA_CLS LGUI(KC_W)
 
-#define FA_BSPC LOPT_T(KC_BSPC)
-#define FA_Z LCTL_T(KC_Z)
+#define FA_BSPC LCTL_T(KC_BSPC)
+#define FA_Z LSFT_T(KC_Z)
 #define FA_X LT(NEO, KC_X)
 
 #define FA_C C_S_T(KC_C)
 #define FA_V LT(VIM, KC_V)
 
-#define FA_GRV LSFT_T(KC_GRV)
+#define FA_GRV LOPT_T(KC_GRV)
 #define FA_RVL LGUI(KC_0)
 
 // Right Half
-#define FA_QUOT ROPT_T(KC_QUOT)
+#define FA_QUOT RCTL_T(KC_QUOT)
 #define FA_DOT LT(NEO, KC_DOT)
-#define FA_SLSH RCTL_T(KC_SLSH)
+#define FA_SLSH RSFT_T(KC_SLSH)
 
-#define FA_UNDS RSFT_T(KC_F17)
+#define FA_UNDS ROPT_T(KC_F17)
 #define FA_FCS LGUI(LSFT(KC_X))             // Focus Xcode      |       cmd + shift + x
 
 // Inrease Decrease
@@ -84,7 +85,6 @@ enum custom_keycodes {
     Vi_G,
     Vi_s,
     Vi_g_,
-    MA_X
 };
 
 // MARK: - Combos
@@ -98,8 +98,8 @@ combo_t key_combos[COMBO_COUNT] = {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_moonlander(
         FA_CLS,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    FA_QUIT,           FA_INC,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSLS,
-        KC_F16,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    CAPSWRD,           FA_DEC,  KC_Y,    KC_U,    KC_I,    FA_O,    KC_P,    KC_MINS,
-        FA_BSPC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    FA_GOOGLE,         FA_PRV,  KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, FA_QUOT,
+        KC_F16,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    FA_GOOGLE,         FA_DEC,  KC_Y,    KC_U,    KC_I,    FA_O,    KC_P,    KC_MINS,
+        FA_BSPC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    CAPSWRD,           FA_PRV,  KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, FA_QUOT,
         FA_GRV,  FA_Z,    FA_X,    KC_C,    FA_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, FA_DOT,  FA_SLSH, FA_UNDS,
         FA_FCS,  KC_F6,   KC_LCTL, KC_LOPT, KC_LCMD,          FA_RUN,            FA_ALF,           KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, QK_BOOT,
                                             FA_TAB,  MOD_1,   MOD_2,             FA_PLT,  FA_ENT,  FA_ESC
@@ -107,10 +107,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [NEO] = LAYOUT_moonlander(
         _______, _______, _______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, _______, MA_3,
-        _______, KC_EXLM, KC_AT,   KC_ASTR, KC_AMPR, KC_TILD, _______,           _______, MA_3,    FA_UE,   KC_LPRN, KC_RPRN, KC_RCBR, KC_EQL,
-        _______, KC_CIRC, FA_SS,   KC_HASH, KC_DLR,  KC_PERC, _______,           _______, KC_LBRC, KC_LCBR, KC_RCBR, KC_RBRC, KC_PLUS, KC_EQL,
+        _______, KC_EXLM, KC_AT,   KC_ASTR, KC_CIRC, KC_TILD, _______,           _______, MA_3,    FA_UE,   KC_LPRN, KC_RPRN, KC_PERC, KC_EQL,
+        _______, KC_AMPR, FA_SS,   KC_DLR,  KC_EXLM, KC_ASTR, _______,           _______, KC_HASH, KC_LCBR, KC_RCBR, KC_RBRC, KC_PLUS, KC_EQL,
         _______, MA_1,    MA_0,    FA_CPY,  FA_PST,  KC_PIPE,                             MA_2,    MA_4,    KC_LBRC, KC_RBRC, KC_PIPE, KC_PIPE,
-        _______, _______, _______, _______, _______,          MA_X,              MA_X,             _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______,          _______,           _______,             _______, _______, _______, _______, _______,
                                             _______, _______, _______,           _______,_______, _______
     ),
 
@@ -160,7 +160,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 };
 
-// keyboard lightning
 extern rgb_config_t rgb_matrix_config;
 
 void keyboard_post_init_user(void) {
@@ -249,7 +248,7 @@ void rgb_matrix_indicators_user(void) {
 
 // special key handling
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    if (record->event.pressed) {
+if (record->event.pressed) {
         switch (keycode) {
         case MA_0:
             SEND_STRING("- [ ] ");
@@ -281,10 +280,37 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case Vi_g_:
             SEND_STRING("g_");
             break;
-        case MA_X:
-            SEND_STRING("Das ist das Haus vom Nikolaus" SS_DELAY(200) SS_TAP(X_ENTER));
-            break;
         }
     }
     return true;
+}
+
+// MARK: - Raw HID
+
+enum hid_command {
+    lighting_get_value       = 0x01,
+    lighting_set_value       = 0x02,
+    lighting_toggle_value    = 0x03,
+};
+
+void raw_hid_receive(uint8_t *data, uint8_t length) {
+
+    uint8_t *command_id   = &(data[0]);
+    // uint8_t *command_data = &(data[1]);
+
+    switch (*command_id) {
+        case lighting_get_value:
+            // via_qmk_rgblight_set_value(command_data);
+            break;
+        case lighting_set_value:
+            // via_qmk_rgblight_get_value(command_data);
+            break;
+        case lighting_toggle_value:
+            // eeconfig_update_rgb_matrix();
+            break;
+        default:
+            break;
+    }
+
+    raw_hid_send(data, length);
 }
