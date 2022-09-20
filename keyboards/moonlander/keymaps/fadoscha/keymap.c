@@ -55,6 +55,9 @@
 #define FA_PLT LAG_T(KC_F19)                // cmd + shift + p
 
 #define FA_ALF RGUI_T(KC_F20)               // Alfred           |        cmd + option
+                                            //
+#define STR_E LCTL(KC_E)
+#define STR_Y LCTL(KC_Y)
 
 enum layers {
     BASE,           // Default Layer
@@ -107,7 +110,7 @@ combo_t key_combos[COMBO_COUNT] = {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_moonlander(
         FA_CLS,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    FA_QUIT,           FA_INC,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSLS,
-        KC_F16,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    FA_GOOGLE,         FA_DEC,  KC_Y,    KC_U,    KC_I,    FA_O,    KC_P,    KC_MINS,
+        KC_F16,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    FA_GOOGLE,         FA_DEC,  KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_MINS,
         FA_BSPC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    CAPSWRD,           MA_X,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, FA_QUOT,
         FA_GRV,  FA_Z,    FA_X,    KC_C,    FA_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, FA_DOT,  FA_SLSH, FA_UNDS,
         FA_FCS,  KC_F6,   KC_LCTL, KC_LOPT, KC_LCMD,          FA_RUN,            FA_ALF,           KC_F11,  KC_F12,  KC_F13,  KC_F14,  KC_F15,
@@ -126,7 +129,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [VIM] = LAYOUT_moonlander(
         _______, _______, _______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, _______, _______,
         _______, _______, _______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, _______, _______,
-        _______, _______, _______, _______, _______, _______, _______,           _______, KC_CIRC, Vi_G,    Vi_gg,   KC_DLR,  Vi_g_,   Vi_s,
+        _______, _______, _______, _______, _______, _______, _______,           _______, KC_CIRC, STR_E,   STR_Y,   KC_DLR,  Vi_g_,   Vi_s,
         _______, _______, _______, _______, _______, _______,                             _______, _______, _______, _______, _______, _______,
         _______, _______, _______, _______, _______,          _______,           _______,          _______, _______, _______, _______, _______,
                                             _______, _______, _______,           _______, _______, _______
