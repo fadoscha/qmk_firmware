@@ -4,6 +4,7 @@
 
 // Left Half
 #define FA_QUIT LGUI(KC_Q)
+#define FA_NTAB LGUI(KC_T)
 #define FA_CLS LGUI(KC_W)
 
 #define FA_BSPC LCTL_T(KC_BSPC)
@@ -101,7 +102,7 @@ combo_t key_combos[COMBO_COUNT] = {
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_moonlander(
-        FA_CLS,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    FA_QUIT,           FA_INC,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSLS,
+        FA_QUIT, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    FA_NTAB,           FA_INC,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSLS,
         KC_F16,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    FA_GOOGLE,         FA_DEC,  KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_MINS,
         FA_BSPC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    CAPSWRD,           FA_FCS,  KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, FA_QUOT,
         FA_GRV,  FA_Z,    FA_X,    KC_C,    FA_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, FA_DOT,  FA_SLSH, FA_UNDS,
