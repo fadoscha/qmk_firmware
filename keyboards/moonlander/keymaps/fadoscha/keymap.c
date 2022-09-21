@@ -74,10 +74,7 @@ enum custom_keycodes {
     Vi_G,
     Vi_s,
     Vi_g_,
-    MA_X,
 };
-
-bool button_pressed;
 
 uint8_t rgb_index = 0x00;
 RGB rgb_value = {
@@ -93,14 +90,6 @@ RGB caps_word_rgb_value = {
     .b = 0x00,
 };
 
-void toggle_button_pressed(void) {
-    if (button_pressed) {
-        button_pressed = false;
-    } else {
-        button_pressed = true;
-    }
-}
-
 // MARK: - Combos
 
 const uint16_t PROGMEM combo_middle_piano_keys[] = {LSA_T(KC_SPC), MEH_T(KC_ENT), COMBO_END};
@@ -114,7 +103,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_moonlander(
         FA_CLS,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    FA_QUIT,           FA_INC,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSLS,
         KC_F16,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    FA_GOOGLE,         FA_DEC,  KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_MINS,
-        FA_BSPC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    CAPSWRD,           MA_X,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, FA_QUOT,
+        FA_BSPC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    CAPSWRD,           FA_FCS,  KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, FA_QUOT,
         FA_GRV,  FA_Z,    FA_X,    KC_C,    FA_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, FA_DOT,  FA_SLSH, FA_UNDS,
         FA_FCS,  FA_NXT,  KC_LCTL, KC_LOPT, KC_LCMD,          FA_RUN,            FA_ALF,           KC_F11,  KC_F12,  KC_F13,  KC_F14,  KC_F15,
                                             FA_TAB,  MOD_1,   MOD_2,             FA_PLT,  FA_ENT,  FA_ESC
@@ -292,9 +281,6 @@ if (record->event.pressed) {
             break;
         case Vi_g_:
             SEND_STRING("g_");
-            break;
-        case MA_X:
-            toggle_button_pressed();
             break;
         }
     }
