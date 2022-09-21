@@ -37,10 +37,8 @@
 #define FA_PST LGUI(KC_V)
 #define FA_CUT LGUI(KC_X)
 
-#define FA_NXT LSA(KC_COMM)
-#define FA_PRV MEH(KC_DOT)
-#define FA_O LT(FUN, KC_O)
 #define FA_GOOGLE HYPR(KC_F1)
+#define FA_NXT MEH(KC_N)
 
 // Thumb Cluster Left
 #define FA_TAB LCMD_T(KC_TAB)               // Tab              |        cmd
@@ -54,8 +52,7 @@
 #define FA_ENT HYPR_T(KC_ENT)               // Enter            |        hyper
 #define FA_PLT LAG_T(KC_F19)                // cmd + shift + p
 
-#define FA_ALF RGUI_T(KC_F20)               // Alfred           |        cmd + option
-                                            //
+#define FA_ALF RGUI_T(KC_F20)               // Alfred           |        cmd + space
 #define STR_E LCTL(KC_E)
 #define STR_Y LCTL(KC_Y)
 
@@ -83,8 +80,14 @@ enum custom_keycodes {
 bool button_pressed;
 
 uint8_t rgb_index = 0x00;
-
 RGB rgb_value = {
+    .r = 0x00,
+    .g = 0x00,
+    .b = 0x00,
+};
+
+uint8_t caps_word_rgb_index = 31;
+RGB caps_word_rgb_value = {
     .r = 0x00,
     .g = 0x00,
     .b = 0x00,
@@ -113,7 +116,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_F16,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    FA_GOOGLE,         FA_DEC,  KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_MINS,
         FA_BSPC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    CAPSWRD,           MA_X,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, FA_QUOT,
         FA_GRV,  FA_Z,    FA_X,    KC_C,    FA_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, FA_DOT,  FA_SLSH, FA_UNDS,
-        FA_FCS,  KC_F6,   KC_LCTL, KC_LOPT, KC_LCMD,          FA_RUN,            FA_ALF,           KC_F11,  KC_F12,  KC_F13,  KC_F14,  KC_F15,
+        FA_FCS,  FA_NXT,  KC_LCTL, KC_LOPT, KC_LCMD,          FA_RUN,            FA_ALF,           KC_F11,  KC_F12,  KC_F13,  KC_F14,  KC_F15,
                                             FA_TAB,  MOD_1,   MOD_2,             FA_PLT,  FA_ENT,  FA_ESC
     ),
 
@@ -128,9 +131,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [VIM] = LAYOUT_moonlander(
         _______, _______, _______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, _______, _______,
-        _______, _______, _______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, Vi_g_,   _______,
+        _______, _______, _______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, KC_CIRC,   _______,
         _______, _______, _______, _______, _______, _______, _______,           _______, KC_B,    STR_E,   STR_Y,   KC_W,    _______, Vi_s,
-        _______, _______, _______, _______, _______, _______,                             KC_CIRC, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______, _______,                             Vi_g_,   _______, _______, _______, _______, _______,
         _______, _______, _______, _______, _______,          _______,           _______,          _______, _______, _______, _______, _______,
                                             _______, _______, _______,           _______, _______, _______
     ),
@@ -159,12 +162,12 @@ void keyboard_post_init_user(void) {
 const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
     [0] = {
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
-        {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
+        {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {HSV_WHITE},
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
-        {0,0,0}, {0,0,0}, {0,0,0},
+        {0,0,0}, {HSV_GOLD}, {0,0,0},
 
         {0,0,0}, {0,0,0}, {0,0,0},
         {0,0,0},
@@ -220,6 +223,7 @@ void rgb_matrix_indicators_user(void) {
   }
 
   rgb_matrix_set_color(rgb_index, rgb_value.r, rgb_value.g, rgb_value.b);
+  rgb_matrix_set_color(caps_word_rgb_index, caps_word_rgb_value.r, caps_word_rgb_value.g, caps_word_rgb_value.b);
 }
 
 void set_lightning_value(uint8_t *data) {
@@ -234,6 +238,26 @@ void set_lightning_value(uint8_t *data) {
     };
     rgb_value = rgb; // rgb_matrix_sethsv_noeeprom(value_data[0], value_data[1], rgblight_get_val())
 };
+
+// MARK: - Caps Word
+
+void caps_word_set_user(bool active) {
+    if (active) {
+        RGB rgb = {
+            .r = 0xFF,
+            .g = 0x00,
+            .b = 0x00
+        };
+        caps_word_rgb_value = rgb;
+    } else {
+        RGB rgb = {
+            .r = 0x00,
+            .g = 0x00,
+            .b = 0x00
+        };
+        caps_word_rgb_value = rgb;
+    }
+}
 
 // special key handling
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
