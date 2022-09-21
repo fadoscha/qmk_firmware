@@ -39,7 +39,9 @@
 #define FA_CUT LGUI(KC_X)
 
 #define FA_GOOGLE HYPR(KC_F1)
-#define FA_NXT MEH(KC_N)
+
+#define F_NXT LSA(KC_N)
+#define M_NXT MEH(KC_N)
 
 // Thumb Cluster Left
 #define FA_TAB LCMD_T(KC_TAB)               // Tab              |        cmd
@@ -56,6 +58,22 @@
 #define FA_ALF RGUI_T(KC_F20)               // Alfred           |        cmd + space
 #define STR_E LCTL(KC_E)
 #define STR_Y LCTL(KC_Y)
+
+#define CK_F1 LCMD(KC_F1)
+#define CK_F2 LCMD(KC_F2)
+#define CK_F3 LCMD(KC_F3)
+#define CK_F4 LCMD(KC_F4)
+#define CK_F5 LCMD(KC_F5)
+#define CK_F6 LCMD(KC_F6)
+#define CK_F7 LCMD(KC_F7)
+#define CK_F8 LCMD(KC_F8)
+#define CK_F9 LCMD(KC_F9)
+#define CK_F10 LCMD(KC_F10)
+#define CK_F11 LCMD(KC_F11)
+#define CK_F12 LCMD(KC_F12)
+#define CK_F13 LCMD(KC_F13)
+#define CK_F14 LCMD(KC_F14)
+#define CK_F15 LCMD(KC_F15)
 
 enum layers {
     BASE,           // Default Layer
@@ -75,6 +93,7 @@ enum custom_keycodes {
     Vi_G,
     Vi_s,
     Vi_g_,
+    Vi_ciw,
 };
 
 uint8_t rgb_index = 0x00;
@@ -103,10 +122,10 @@ combo_t key_combos[COMBO_COUNT] = {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_moonlander(
         FA_QUIT, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    FA_NTAB,           FA_INC,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSLS,
-        KC_F16,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    FA_GOOGLE,         FA_DEC,  KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_MINS,
-        FA_BSPC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    CAPSWRD,           FA_FCS,  KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, FA_QUOT,
-        FA_GRV,  FA_Z,    FA_X,    KC_C,    FA_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, FA_DOT,  FA_SLSH, FA_UNDS,
-        FA_FCS,  FA_NXT,  KC_LCTL, KC_LOPT, KC_LCMD,          FA_RUN,            FA_ALF,           KC_F11,  KC_F12,  KC_F13,  KC_F14,  KC_F15,
+        FA_GRV,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    FA_GOOGLE,         FA_DEC,  KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_MINS,
+        FA_BSPC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    CAPSWRD,           Vi_ciw,  KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, FA_QUOT,
+        OSL(FUN),FA_Z,    FA_X,    KC_C,    FA_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, FA_DOT,  FA_SLSH, FA_UNDS,
+        F_NXT,   M_NXT,   KC_LCTL, KC_LOPT, KC_LCMD,          FA_RUN,            FA_ALF,           KC_F11,  KC_F12,  KC_F13,  KC_F14,  KC_F15,
                                             FA_TAB,  MOD_1,   MOD_2,             FA_PLT,  FA_ENT,  FA_ESC
     ),
 
@@ -130,9 +149,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [FUN] = LAYOUT_moonlander(
         _______, _______, _______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, _______, _______,
-        _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   _______,           _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   _______,
-        _______, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,           _______, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,
-        _______, KC_F11,  KC_F12,  KC_F13,  KC_F14,  KC_F15,                              KC_F11,  KC_F12,  KC_F13,  KC_F14,  KC_F15,  _______,
+        _______, CK_F1,   CK_F2,   CK_F3,   CK_F4,   CK_F5,   _______,           _______, CK_F1,   CK_F2,   CK_F3,   CK_F4,   CK_F5,   _______,
+        _______, CK_F6,   CK_F7,   CK_F8,   CK_F9,   CK_F10,  _______,           _______, CK_F6,   CK_F7,   CK_F8,   CK_F9,   CK_F10,  _______,
+        _______, CK_F11,  CK_F12,  CK_F13,  CK_F14,  CK_F15,                              CK_F11,  CK_F12,  CK_F13,  CK_F14,  CK_F15,  _______,
         _______, _______, _______, _______, _______,          _______,           _______,          _______, _______, _______, _______, _______,
                                             _______, _______, _______,           _______, _______, _______
     ),
@@ -151,8 +170,8 @@ void keyboard_post_init_user(void) {
 
 const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
     [0] = {
-        {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {HSV_WHITE},
+        {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {HSV_RED},
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
@@ -173,7 +192,29 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
         {0,0,0}, {0,0,0}, {HSV_GREEN},
         {0,0,0},
     },
-    [1] = { {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0} },
+    [1] = {
+        {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
+        {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
+        {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
+        {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
+        {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
+        {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
+        {0,0,0}, {0,0,0}, {0,0,0},
+
+        {0,0,0}, {0,0,0}, {0,0,0},
+        {0,0,0},
+
+        {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
+        {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
+        {0,0,0}, {HSV_BLUE}, {0,0,0}, {0,0,0}, {0,0,0},
+        {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
+        {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
+        {0,0,0}, {0,0,0}, {0,0,0}, {HSV_GREEN},
+        {0,0,0}, {0,0,0}, {0,0,0},
+
+        {0,0,0}, {0,0,0}, {0,0,0},
+        {0,0,0},
+    },
     [2] = { {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0} }
 };
 
@@ -205,6 +246,9 @@ void rgb_matrix_indicators_user(void) {
       break;
     case 2:
       set_layer_color(0);
+      break;
+    case 3:
+      set_layer_color(1);
       break;
    default:
     if (rgb_matrix_get_flags() == LED_FLAG_NONE)
@@ -282,6 +326,9 @@ if (record->event.pressed) {
             break;
         case Vi_g_:
             SEND_STRING("g_");
+            break;
+        case Vi_ciw:
+            SEND_STRING("ciw");
             break;
         }
     }
