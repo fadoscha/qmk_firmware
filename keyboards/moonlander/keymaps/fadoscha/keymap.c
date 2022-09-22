@@ -170,7 +170,7 @@ void keyboard_post_init_user(void) {
 
 const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
     [0] = {
-        {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {HSV_WHITE},
+        {HSV_RED}, {0,0,0}, {0,0,0}, {0,0,0}, {HSV_WHITE},
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {HSV_RED},
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
@@ -193,7 +193,7 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
         {HSV_RED},
     },
     [1] = {
-        {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
+        {HSV_RED}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
         {0,0,0}, {HSV_TURQUOISE}, {0,0,0}, {0,0,0}, {0,0,0},
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
@@ -256,7 +256,7 @@ void rgb_matrix_indicators_user(void) {
     break;
   }
 
-  rgb_matrix_set_color(rgb_index, rgb_value.r, rgb_value.g, rgb_value.b);
+//   rgb_matrix_set_color(rgb_index, rgb_value.r, rgb_value.g, rgb_value.b);
   rgb_matrix_set_color(caps_word_rgb_index, caps_word_rgb_value.r, caps_word_rgb_value.g, caps_word_rgb_value.b);
 }
 
