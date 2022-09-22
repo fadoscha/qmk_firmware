@@ -55,7 +55,7 @@
 #define FA_ENT HYPR_T(KC_ENT)               // Enter            |        hyper
 #define FA_PLT LAG_T(KC_F19)                // cmd + shift + p
 
-#define FA_ALF RGUI_T(KC_F20)               // Alfred           |        cmd + space
+#define FA_GRM RGUI_T(KC_F20)               // Grammar
 #define STR_E LCTL(KC_E)
 #define STR_Y LCTL(KC_Y)
 
@@ -112,7 +112,7 @@ RGB caps_word_rgb_value = {
 
 // MARK: - Combos
 
-const uint16_t PROGMEM combo_middle_piano_keys[] = {LSA_T(KC_SPC), MEH_T(KC_ENT), COMBO_END};
+const uint16_t PROGMEM combo_middle_piano_keys[] = {LSA_T(KC_SPC), HYPR_T(KC_ENT), COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo_middle_piano_keys, LGUI(KC_SPC)),
@@ -125,7 +125,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         FA_GRV,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    FA_GOOGLE,         FA_DEC,  KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_MINS,
         FA_BSPC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    CAPSWRD,           Vi_ciw,  KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, FA_QUOT,
         OSL(FUN),FA_Z,    FA_X,    KC_C,    FA_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, FA_DOT,  FA_SLSH, FA_UNDS,
-        F_NXT,   M_NXT,   KC_LCTL, KC_LOPT, KC_LCMD,          FA_RUN,            FA_ALF,           KC_F11,  KC_F12,  KC_F13,  KC_F14,  KC_F15,
+        F_NXT,   M_NXT,   KC_LCTL, KC_LOPT, KC_LCMD,          FA_RUN,            FA_GRM,           KC_F11,  KC_F12,  KC_F13,  KC_F14,  KC_F15,
                                             FA_TAB,  MOD_1,   MOD_2,             FA_PLT,  FA_ENT,  FA_ESC
     ),
 
@@ -178,8 +178,8 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
         {0,0,0}, {HSV_GOLD}, {0,0,0},
 
-        {0,0,0}, {0,0,0}, {HSV_BLUE},
-        {0,0,0},
+        {HSV_BLUE}, {HSV_WHITE}, {HSV_BLUE},
+        {HSV_RED},
 
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {HSV_PURPLE},
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {HSV_BLUE},
@@ -189,20 +189,20 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
         {0,0,0}, {0,0,0}, {0,0,0},
 
-        {0,0,0}, {0,0,0}, {HSV_GREEN},
-        {0,0,0},
+        {HSV_GREEN}, {HSV_WHITE}, {HSV_GREEN},
+        {HSV_RED},
     },
     [1] = {
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
-        {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
+        {0,0,0}, {HSV_TURQUOISE}, {0,0,0}, {0,0,0}, {0,0,0},
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
         {0,0,0}, {0,0,0}, {0,0,0},
 
-        {0,0,0}, {0,0,0}, {0,0,0},
-        {0,0,0},
+        {HSV_BLUE}, {HSV_WHITE}, {HSV_BLUE},
+        {HSV_RED},
 
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
@@ -212,8 +212,8 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
         {0,0,0}, {0,0,0}, {0,0,0}, {HSV_GREEN},
         {0,0,0}, {0,0,0}, {0,0,0},
 
-        {0,0,0}, {0,0,0}, {0,0,0},
-        {0,0,0},
+        {HSV_GREEN}, {HSV_WHITE}, {HSV_GREEN},
+        {HSV_RED},
     },
     [2] = { {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0} }
 };
