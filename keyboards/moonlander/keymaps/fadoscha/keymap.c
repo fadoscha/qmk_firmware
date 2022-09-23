@@ -38,7 +38,8 @@
 #define FA_PST LGUI(KC_V)
 #define FA_CUT LGUI(KC_X)
 
-#define FA_GOOGLE HYPR(KC_F1)
+#define FA_GOO HYPR(KC_F1)
+#define FA_TRLT HYPR(KC_L)
 
 #define F_NXT LSA(KC_N)
 #define M_NXT MEH(KC_N)
@@ -121,11 +122,11 @@ combo_t key_combos[COMBO_COUNT] = {
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_moonlander(
-        FA_QUIT, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    FA_NTAB,           FA_INC,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSLS,
-        FA_GRV,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    FA_GOOGLE,         FA_DEC,  KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_MINS,
-        FA_BSPC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    CAPSWRD,           Vi_ciw,  KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, FA_QUOT,
+        FA_QUIT, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    FA_DEC,            FA_CLS,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSLS,
+        FA_GRV,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    FA_INC,            FA_GOO,  KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_MINS,
+        FA_BSPC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    CAPSWRD,           FA_TRLT, KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, FA_QUOT,
         OSL(FUN),FA_Z,    FA_X,    KC_C,    FA_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, FA_DOT,  FA_SLSH, FA_UNDS,
-        F_NXT,   M_NXT,   KC_LCTL, KC_LOPT, KC_LCMD,          FA_RUN,            FA_GRM,           KC_F11,  KC_F12,  KC_F13,  KC_F14,  KC_F15,
+        M_NXT,   KC_F10,  KC_LCTL, KC_LOPT, KC_LCMD,          FA_RUN,            FA_GRM,           KC_F11,  KC_F12,  KC_F13,  KC_F14,  KC_F15,
                                             FA_TAB,  MOD_1,   MOD_2,             FA_PLT,  FA_ENT,  FA_ESC
     ),
 
@@ -149,9 +150,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [FUN] = LAYOUT_moonlander(
         _______, _______, _______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, _______, _______,
-        _______, CK_F1,   CK_F2,   CK_F3,   CK_F4,   CK_F5,   _______,           _______, CK_F1,   CK_F2,   CK_F3,   CK_F4,   CK_F5,   _______,
-        _______, CK_F6,   CK_F7,   CK_F8,   CK_F9,   CK_F10,  _______,           _______, CK_F6,   CK_F7,   CK_F8,   CK_F9,   CK_F10,  _______,
-        _______, CK_F11,  CK_F12,  CK_F13,  CK_F14,  CK_F15,                              CK_F11,  CK_F12,  CK_F13,  CK_F14,  CK_F15,  _______,
+        _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   _______,           _______, CK_F1,   CK_F2,   CK_F3,   CK_F4,   CK_F5,   _______,
+        _______, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,           _______, CK_F6,   CK_F7,   CK_F8,   CK_F9,   CK_F10,  _______,
+        _______, KC_F11,  KC_F12,  KC_F13,  KC_F14,  KC_F15,                              CK_F11,  CK_F12,  CK_F13,  CK_F14,  CK_F15,  _______,
         _______, _______, _______, _______, _______,          _______,           _______,          _______, _______, _______, _______, _______,
                                             _______, _______, _______,           _______, _______, _______
     ),
@@ -170,13 +171,13 @@ void keyboard_post_init_user(void) {
 
 const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
     [0] = {
-        {HSV_RED}, {0,0,0}, {0,0,0}, {0,0,0}, {HSV_WHITE},
-        {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {HSV_RED},
+        {HSV_RED}, {0,0,0}, {0,0,0}, {0,0,0}, {HSV_RED},
+        {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {HSV_GREEN},
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
-        {0,0,0}, {HSV_GOLD}, {0,0,0},
+        {HSV_WHITE}, {HSV_WHITE}, {0,0,0},
 
         {HSV_BLUE}, {HSV_WHITE}, {HSV_BLUE},
         {HSV_RED},
@@ -187,19 +188,19 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {HSV_TURQUOISE},
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {HSV_YELLOW},
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
-        {0,0,0}, {0,0,0}, {0,0,0},
+        {HSV_RED}, {HSV_WHITE}, {HSV_BLUE},
 
         {HSV_GREEN}, {HSV_WHITE}, {HSV_GREEN},
         {HSV_RED},
     },
     [1] = {
         {HSV_RED}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
-        {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
-        {0,0,0}, {HSV_TURQUOISE}, {0,0,0}, {0,0,0}, {0,0,0},
+        {0,0,0}, {HSV_BLUE}, {0,0,0}, {0,0,0}, {0,0,0},
+        {0,0,0}, {HSV_TURQUOISE}, {HSV_YELLOW}, {0,0,0}, {0,0,0},
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
-        {0,0,0}, {0,0,0}, {0,0,0},
+        {HSV_WHITE}, {HSV_WHITE}, {0,0,0},
 
         {HSV_BLUE}, {HSV_WHITE}, {HSV_BLUE},
         {HSV_RED},
@@ -207,10 +208,10 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
         {0,0,0}, {HSV_BLUE}, {0,0,0}, {0,0,0}, {0,0,0},
-        {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
+        {0,0,0}, {0,0,0}, {HSV_WHITE}, {0,0,0}, {0,0,0},
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
         {0,0,0}, {0,0,0}, {0,0,0}, {HSV_GREEN},
-        {0,0,0}, {0,0,0}, {0,0,0},
+        {HSV_WHITE}, {HSV_WHITE}, {HSV_BLUE},
 
         {HSV_GREEN}, {HSV_WHITE}, {HSV_GREEN},
         {HSV_RED},
