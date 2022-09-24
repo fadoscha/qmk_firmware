@@ -8,7 +8,7 @@
 #define FA_CLS LGUI(KC_W)
 
 #define FA_BSPC LCTL_T(KC_BSPC)
-#define FA_Z LSFT_T(KC_Z)
+#define FA_Z LCTL_T(KC_Z)
 #define FA_X LT(NEO, KC_X)
 
 #define FA_C C_S_T(KC_C)
@@ -22,7 +22,7 @@
 #define FA_DOT LT(NEO, KC_DOT)
 #define FA_SLSH RSFT_T(KC_SLSH)
 
-#define FA_UNDS ROPT_T(KC_F17)
+#define FA_UNDS RSFT_T(KC_F17)
 #define FA_FCS LGUI(LSFT(KC_X))             // Focus Xcode      |       cmd + shift + x
 
 // Inrease Decrease
@@ -123,9 +123,9 @@ combo_t key_combos[COMBO_COUNT] = {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_moonlander(
         FA_QUIT, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    FA_DEC,            FA_CLS,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSLS,
-        FA_GRV,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    FA_INC,            FA_GOO,  KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_MINS,
-        FA_BSPC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    CAPSWRD,           FA_TRLT, KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, FA_QUOT,
-        OSL(FUN),FA_Z,    FA_X,    KC_C,    FA_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, FA_DOT,  FA_SLSH, FA_UNDS,
+        FA_GRV,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    FA_INC,            FA_TRLT, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_MINS,
+        KC_BSPC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    CAPSWRD,           OSL(FUN),KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, FA_QUOT,
+        KC_LSFT, FA_Z,    FA_X,    KC_C,    FA_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, FA_DOT,  FA_SLSH, FA_UNDS,
         M_NXT,   KC_F10,  KC_LCTL, KC_LOPT, KC_LCMD,          FA_RUN,            FA_GRM,           KC_F11,  KC_F12,  KC_F13,  KC_F14,  KC_F15,
                                             FA_TAB,  MOD_1,   MOD_2,             FA_PLT,  FA_ENT,  FA_ESC
     ),
