@@ -122,11 +122,11 @@ combo_t key_combos[COMBO_COUNT] = {
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_moonlander(
-        FA_QUIT, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    FA_DEC,            FA_CLS,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSLS,
-        FA_GRV,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    FA_INC,            FA_TRLT, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_MINS,
-        KC_BSPC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    CAPSWRD,           OSL(FUN),KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, FA_QUOT,
+        FA_QUIT, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    FA_INC,            FA_CLS,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSLS,
+        KC_BSPC, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    FA_DEC,            FA_TRLT, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_MINS,
+        KC_CAPS, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    CAPSWRD,           OSL(FUN),KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, FA_QUOT,
         KC_LSFT, FA_Z,    FA_X,    KC_C,    FA_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, FA_DOT,  FA_SLSH, FA_UNDS,
-        M_NXT,   KC_F10,  KC_LCTL, KC_LOPT, KC_LCMD,          FA_RUN,            FA_GRM,           KC_F11,  KC_F12,  KC_F13,  KC_F14,  KC_F15,
+        M_NXT,   KC_F16,  KC_LCTL, KC_LOPT, KC_LCMD,          FA_RUN,            FA_GRM,           KC_F11,  KC_F12,  KC_F13,  KC_F14,  KC_F15,
                                             FA_TAB,  MOD_1,   MOD_2,             FA_PLT,  FA_ENT,  FA_ESC
     ),
 
@@ -199,7 +199,7 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
         {0,0,0}, {HSV_TURQUOISE}, {HSV_YELLOW}, {0,0,0}, {0,0,0},
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
-        {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
+        {0,0,0}, {0,0,0}, {HSV_TEAL}, {0,0,0},
         {HSV_WHITE}, {HSV_WHITE}, {0,0,0},
 
         {HSV_BLUE}, {HSV_WHITE}, {HSV_BLUE},
@@ -209,7 +209,7 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
         {0,0,0}, {HSV_BLUE}, {0,0,0}, {0,0,0}, {0,0,0},
         {0,0,0}, {0,0,0}, {HSV_WHITE}, {0,0,0}, {0,0,0},
-        {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
+        {0,0,0}, {0,0,0}, {0,0,0}, {HSV_RED}, {0,0,0},
         {0,0,0}, {0,0,0}, {0,0,0}, {HSV_GREEN},
         {HSV_WHITE}, {HSV_WHITE}, {HSV_BLUE},
 
