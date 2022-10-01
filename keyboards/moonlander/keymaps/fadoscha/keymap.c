@@ -18,9 +18,8 @@
 #define FA_RVL LGUI(KC_0)
 
 // Right Half
-#define FA_QUOT RCTL_T(KC_QUOT)
 #define FA_DOT LT(NEO, KC_DOT)
-#define FA_SLSH RSFT_T(KC_SLSH)
+#define FA_SLSH ROPT_T(KC_SLSH)
 
 #define FA_UNDS RSFT_T(KC_F17)
 #define FA_FCS LGUI(LSFT(KC_X))             // Focus Xcode      |       cmd + shift + x
@@ -52,9 +51,9 @@
 #define FA_RUN LGUI(KC_R)                   // Xcode Run        |        cmd + r
 
 // Thumb Cluster Right
-#define FA_ESC LSG_T(KC_ESC)                // ESC              |        cmd + shift
+#define FA_ESC LOPT_T(KC_ESC)               // ESC              |        option
 #define FA_ENT HYPR_T(KC_ENT)               // Enter            |        hyper
-#define FA_PLT LAG_T(KC_F19)                // cmd + shift + p
+#define FA_PLT LSG_T(KC_F19)                // cmd + shift + p
 
 #define FA_GRM RGUI_T(KC_F20)               // Grammar
 #define STR_E LCTL(KC_E)
@@ -115,17 +114,49 @@ RGB caps_word_rgb_value = {
 
 const uint16_t PROGMEM combo_middle_piano_keys[] = {LSA_T(KC_SPC), HYPR_T(KC_ENT), COMBO_END};
 
+const uint16_t PROGMEM combo_j_f[] = {KC_J, KC_F, COMBO_END};
+const uint16_t PROGMEM combo_j_a[] = {KC_J, KC_A, COMBO_END};
+const uint16_t PROGMEM combo_j_d[] = {KC_J, KC_D, COMBO_END};
+const uint16_t PROGMEM combo_j_v[] = {KC_J, KC_V, COMBO_END};
+
+const uint16_t PROGMEM combo_j_k[] = {KC_J, KC_K, COMBO_END};
+const uint16_t PROGMEM combo_f_d[] = {KC_F, KC_D, COMBO_END};
+
+const uint16_t PROGMEM combo_f_i[] = {KC_F, KC_I, COMBO_END};
+const uint16_t PROGMEM combo_f_y[] = {KC_F, KC_Y, COMBO_END};
+
+const uint16_t PROGMEM combo_f_j[] = {KC_F, KC_J, COMBO_END};
+const uint16_t PROGMEM combo_d_k[] = {KC_D, KC_K, COMBO_END};
+const uint16_t PROGMEM combo_s_l[] = {KC_S, KC_L, COMBO_END};
+const uint16_t PROGMEM combo_a_scln[] = {KC_A, KC_SCLN, COMBO_END};
+
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo_middle_piano_keys, LGUI(KC_SPC)),
+
+    COMBO(combo_j_f, LSFT(KC_J)),
+    COMBO(combo_j_a, LSFT(KC_A)),
+    COMBO(combo_j_d, LSFT(KC_D)),
+    COMBO(combo_j_v, LSFT(KC_V)),
+
+    COMBO(combo_j_k, KC_ESC),
+    COMBO(combo_f_d, CAPSWRD),
+
+    COMBO(combo_f_i, LSFT(KC_I)),
+    COMBO(combo_f_y, LSFT(KC_Y)),
+
+    COMBO(combo_f_j, LSFT(KC_J)),
+    COMBO(combo_d_k, KC_PLUS),
+    COMBO(combo_s_l, KC_EQL),
+    COMBO(combo_a_scln, KC_DQT),
 };
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_moonlander(
         FA_QUIT, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    FA_INC,            FA_CLS,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSLS,
-        KC_BSPC, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    FA_DEC,            FA_TRLT, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_MINS,
-        KC_CAPS, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    CAPSWRD,           OSL(FUN),KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, FA_QUOT,
-        KC_LSFT, FA_Z,    FA_X,    KC_C,    FA_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, FA_DOT,  FA_SLSH, FA_UNDS,
+        KC_GRV,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    FA_DEC,            FA_TRLT, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_MINS,
+        KC_BSPC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    CAPSWRD,           OSL(FUN),KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
+        KC_LSFT, FA_Z,    FA_X,    KC_C,    KC_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, FA_DOT,  FA_SLSH, FA_UNDS,
         M_NXT,   KC_F16,  KC_LCTL, KC_LOPT, KC_LCMD,          FA_RUN,            FA_GRM,           KC_F11,  KC_F12,  KC_F13,  KC_F14,  KC_F15,
                                             FA_TAB,  MOD_1,   MOD_2,             FA_PLT,  FA_ENT,  FA_ESC
     ),
