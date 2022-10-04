@@ -8,19 +8,19 @@
 #define FA_NTAB LGUI(KC_T)
 #define FA_CLS LGUI(KC_W)
 
-#define FA_BSPC LCTL_T(KC_BSPC)
+#define FA_BSPC LSA_T(KC_BSPC)
 #define FA_Z LCTL_T(KC_Z)
-#define FA_X LT(NEO, KC_X)
-
-#define FA_C C_S_T(KC_C)
-#define FA_V LT(VIM, KC_V)
+#define FA_X LGUI_T(KC_X)
+#define FA_C MEH_T(KC_C)
+#define FA_V LSA_T(KC_V)
 
 #define FA_GRV LOPT_T(KC_GRV)
 #define FA_RVL LGUI(KC_0)
 
 // Right Half
-#define FA_DOT LT(NEO, KC_DOT)
-#define FA_SLSH ROPT_T(KC_SLSH)
+#define FA_DOT LGUI_T(KC_DOT)
+#define FA_SLSH RCTL_T(KC_SLSH)
+#define FA_COMM MEH_T(KC_COMM)
 
 #define FA_UNDS RSFT_T(KC_F17)
 #define FA_FCS LGUI(LSFT(KC_X))             // Focus Xcode      |       cmd + shift + x
@@ -40,21 +40,23 @@
 
 #define FA_GOO HYPR(KC_F1)
 #define FA_TRLT HYPR(KC_L)
+#define FA_SCRN LSG(KC_4)
+
 
 #define F_NXT LSA(KC_N)
 #define M_NXT MEH(KC_N)
 
 // Thumb Cluster Left
-#define FA_TAB LCMD_T(KC_TAB)               // Tab              |        cmd
-#define MOD_1  LSA_T(KC_SPC)                // Amethyst mod1    |        option + shift
-#define MOD_2  MEH_T(KC_F18)                // Amethyst mod2    |        ctrl + option + shift
+#define FA_TAB LT(NEO, KC_TAB)               // Tab              |        cmd
+#define FA_SPC  LSFT_T(KC_SPC)
+#define FA_OPN LSG_T(KC_F18)                // Amethyst mod2    |        ctrl + option + shift
 
 #define FA_RUN LGUI(KC_R)                   // Xcode Run        |        cmd + r
 
 // Thumb Cluster Right
-#define FA_ESC LOPT_T(KC_ESC)               // ESC              |        option
-#define FA_ENT HYPR_T(KC_ENT)               // Enter            |        hyper
-#define FA_PLT LSG_T(KC_F19)                // cmd + shift + p
+#define FA_ESC LT(NEO ,KC_ESC)               // ESC              |        option
+#define FA_ENT  RSFT_T(KC_ENT)
+#define FA_PLT HYPR_T(KC_F19)                // cmd + shift + p
 
 #define FA_GRM RGUI_T(KC_F20)               // Grammar
 #define STR_E LCTL(KC_E)
@@ -115,18 +117,18 @@ RGB caps_word_rgb_value = {
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_moonlander(
-        FA_QUIT, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    FA_INC,            FA_CLS,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSLS,
-        KC_GRV,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    FA_DEC,            FA_TRLT, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_MINS,
-        KC_BSPC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    CAPSWRD,           OSL(FUN),KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
-  OSM(MOD_LSFT), FA_Z,    FA_X,    KC_C,    KC_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, FA_DOT,  FA_SLSH, OSM(MOD_RSFT),
-        M_NXT,   KC_F16,  KC_LCTL, KC_LOPT, KC_LCMD,          FA_RUN,            FA_GRM,           KC_F11,  KC_F12,  KC_F13,  KC_F14,  KC_F15,
-                                            FA_TAB,  MOD_1,   MOD_2,             FA_PLT,  FA_ENT,  FA_ESC
+        FA_QUIT, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    FA_DEC,            FA_INC,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSLS,
+        KC_GRV,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    FA_SCRN,           FA_GOO,  KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_MINS,
+       FA_BSPC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    LGUI(KC_H),        OSL(FUN),KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
+  OSM(MOD_LSFT), FA_Z,    FA_X,    FA_C,    FA_V,    KC_B,                                KC_N,    KC_M,    FA_COMM, FA_DOT,  FA_SLSH, OSM(MOD_RSFT),
+        M_NXT,   KC_F16,  KC_LCTL, KC_LOPT, KC_LCMD,          FA_RUN,             FA_GRM,          KC_F11,  KC_F12,  KC_F13,  KC_F14,  KC_F15,
+                                            FA_TAB, FA_SPC,   FA_OPN,             FA_PLT,  FA_ENT, FA_ESC
     ),
 
     [NEO] = LAYOUT_moonlander(
         _______, _______, _______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, _______, MA_3,
         _______, KC_EXLM, KC_AT,   KC_ASTR, KC_CIRC, KC_TILD, _______,           _______, MA_3,    FA_UE,   KC_LPRN, KC_RPRN, KC_PERC, KC_EQL,
-        _______, KC_AMPR, FA_SS,   KC_DLR,  KC_EXLM, KC_ASTR, _______,           _______, KC_HASH, KC_LCBR, KC_RCBR, KC_RBRC, KC_PLUS, KC_EQL,
+  LOPT(KC_BSPC), KC_AMPR, FA_SS,   KC_DLR,  KC_EXLM, KC_ASTR, _______,           _______, KC_HASH, KC_LCBR, KC_RCBR, KC_RBRC, KC_PLUS, KC_EQL,
         _______, MA_1,    MA_0,    FA_CPY,  FA_PST,  KC_PIPE,                             MA_2,    MA_4,    KC_LBRC, KC_RBRC, KC_PIPE, KC_PIPE,
         _______, _______, _______, _______, _______,          QK_BOOT,           _______,          _______, _______, _______, _______, _______,
                                             _______, _______, _______,           _______,_______, _______
