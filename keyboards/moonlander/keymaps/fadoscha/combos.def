@@ -1,8 +1,9 @@
-COMB(ALFRED,                        LGUI(KC_SPC),       LSFT_T(KC_SPC), RSFT_T(KC_ENT))
+COMB(ALFRED,                        LGUI(KC_SPC),       KC_F, KC_J)
+COMB(CAPSWRD_COMBO,                 CAPSWRD,            LSFT_T(KC_SPC), RSFT_T(KC_ENT))
+COMB(RUN_COMBO,                     LGUI(KC_R),         KC_S, KC_D, KC_F)
 
-COMB(CAPSWRD_COMBO,                 CAPSWRD , KC_S,     KC_D, KC_F)
-COMB(BACK_COMBO,                    LGUI(KC_LBRC) ,     KC_S, KC_D)
-COMB(FORWARD_COMBO,                 LGUI(KC_RBRC) ,     KC_D, KC_F)
+COMB(BACK_COMBO,                    LGUI(KC_LBRC),      KC_S, KC_D)
+COMB(FORWARD_COMBO,                 LGUI(KC_RBRC),      KC_D, KC_F)
 
 COMB(AMETHYST_NXT_COMBO,            LSA(KC_K),          KC_K, KC_L)
 COMB(AMETHYST_TOGGLE,               LSA(KC_ENT),        KC_H, KC_L)

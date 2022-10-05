@@ -5,8 +5,8 @@
 
 // Left Half
 #define FA_QUIT LGUI(KC_Q)
-#define FA_NTAB LGUI(KC_T)
 #define FA_CLS LGUI(KC_W)
+#define FA_NTAB LGUI(KC_T)
 
 #define FA_BSPC LSA_T(KC_BSPC)
 #define FA_Z LCTL_T(KC_Z)
@@ -19,7 +19,7 @@
 
 // Right Half
 #define FA_DOT LGUI_T(KC_DOT)
-#define FA_SLSH RCTL_T(KC_SLSH)
+#define FA_SLSH RGUI_T(KC_SLSH)
 #define FA_COMM MEH_T(KC_COMM)
 
 #define FA_UNDS RSFT_T(KC_F17)
@@ -58,7 +58,13 @@
 #define FA_ENT  RSFT_T(KC_ENT)
 #define FA_PLT HYPR_T(KC_F19)                // cmd + shift + p
 
-#define FA_GRM RGUI_T(KC_F20)               // Grammar
+// Show Hide Dock
+#define FA_DCK LAG(KC_D)
+// Focus Menu Bar
+#define FA_MNB LSG(KC_SLSH)
+// Grammar
+#define FA_GRM RGUI_T(KC_F20)
+
 #define STR_E LCTL(KC_E)
 #define STR_Y LCTL(KC_Y)
 
@@ -117,11 +123,11 @@ RGB caps_word_rgb_value = {
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_moonlander(
-        FA_QUIT, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    FA_DEC,            FA_INC,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSLS,
-        KC_GRV,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    FA_SCRN,           FA_GOO,  KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_MINS,
+        FA_QUIT, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    FA_CLS,            FA_DEC,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSLS,
+        KC_GRV,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    FA_SCRN,           FA_INC,  KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_MINS,
        FA_BSPC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    LGUI(KC_H),        OSL(FUN),KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
-  OSM(MOD_LSFT), FA_Z,    FA_X,    FA_C,    FA_V,    KC_B,                                KC_N,    KC_M,    FA_COMM, FA_DOT,  FA_SLSH, OSM(MOD_RSFT),
-        M_NXT,   KC_F16,  KC_LCTL, KC_LOPT, KC_LCMD,          FA_RUN,             FA_GRM,          KC_F11,  KC_F12,  KC_F13,  KC_F14,  KC_F15,
+  OSM(MOD_LSFT), FA_Z,    KC_X,    KC_C,    FA_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, KC_DOT,  FA_SLSH, OSM(MOD_RSFT),
+        M_NXT,   KC_F16,  KC_LCTL, KC_LOPT, KC_LCMD,          FA_DCK,             FA_MNB,          KC_F11,  KC_F12,  KC_F13,  KC_F14,  KC_F15,
                                             FA_TAB, FA_SPC,   FA_OPN,             FA_PLT,  FA_ENT, FA_ESC
     ),
 
@@ -172,7 +178,7 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
-        {HSV_WHITE}, {HSV_WHITE}, {0,0,0},
+        {HSV_RED}, {0,0,0}, {0,0,0},
 
         {HSV_BLUE}, {HSV_WHITE}, {HSV_BLUE},
         {HSV_RED},
@@ -183,7 +189,7 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {HSV_TURQUOISE},
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {HSV_YELLOW},
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
-        {HSV_RED}, {HSV_WHITE}, {HSV_BLUE},
+        {HSV_RED}, {HSV_GREEN}, {HSV_BLUE},
 
         {HSV_GREEN}, {HSV_WHITE}, {HSV_GREEN},
         {HSV_RED},
@@ -195,7 +201,7 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
         {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
         {0,0,0}, {0,0,0}, {HSV_TEAL}, {0,0,0},
-        {HSV_WHITE}, {HSV_WHITE}, {0,0,0},
+        {HSV_RED}, {0,0,0}, {0,0,0},
 
         {HSV_BLUE}, {HSV_WHITE}, {HSV_BLUE},
         {HSV_RED},
@@ -206,7 +212,7 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
         {0,0,0}, {0,0,0}, {HSV_WHITE}, {0,0,0}, {0,0,0},
         {0,0,0}, {0,0,0}, {0,0,0}, {HSV_RED}, {0,0,0},
         {0,0,0}, {0,0,0}, {0,0,0}, {HSV_GREEN},
-        {HSV_WHITE}, {HSV_WHITE}, {HSV_BLUE},
+        {HSV_WHITE}, {HSV_GREEN}, {HSV_BLUE},
 
         {HSV_GREEN}, {HSV_WHITE}, {HSV_GREEN},
         {HSV_RED},
